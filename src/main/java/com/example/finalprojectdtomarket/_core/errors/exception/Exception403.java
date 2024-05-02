@@ -1,4 +1,4 @@
-package com.example.finalprojectdtomarket.errors.exception;
+package com.example.finalprojectdtomarket._core.errors.exception;
 
 public class Exception403 extends RuntimeException {
     public Exception403(String msg) {

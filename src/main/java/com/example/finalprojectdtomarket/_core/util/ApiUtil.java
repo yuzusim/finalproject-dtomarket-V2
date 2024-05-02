@@ -1,4 +1,4 @@
-package com.example.finalprojectdtomarket.util;
+package com.example.finalprojectdtomarket._core.util;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package com.example.finalprojectdtomarket.order;
+package com.example.finalprojectdtomarket.item;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -6,8 +6,9 @@ import org.springframework.stereotype.Controller;
 
 @RequiredArgsConstructor
 @Controller
-public class OrderController {
-    private final OrderService orderService;
+public class ItemController {
+
+    private final ItemService itemService;
     private final HttpSession session;
 
 }

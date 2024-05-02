@@ -15,18 +15,14 @@ public class ProductController {
     private final ProductService productService;
 
     // 상품목록보기
-    @GetMapping({"/"})
-    public String list(HttpServletRequest request) {
-        List<ProductResponse.MainDTO> productList = productService.findAll();
-        request.setAttribute("productList", productList);
+    @GetMapping("/")
+    public String list() {
         return "product/list";
     }
 
     // 상품 상세보기
     @GetMapping("/product/{id}")
-    public String detail(@PathVariable int id, HttpServletRequest request) {
-        ProductResponse.DetailDTO product = productService.findById(id);
-        request.setAttribute("product", product);
+    public String detail() {
         return "product/detail";
     }
 
@@ -36,30 +32,25 @@ public class ProductController {
         return "product/save-form";
     }
 
-    @PostMapping("product/add")
-    public String save(ProductRequest.SaveDTO reqDTO) {
-        productService.save(reqDTO);
+    @PostMapping("/product/save")
+    public String save() {
         return "redirect:/";
     }
 
     // 상품 수정하기
     @GetMapping("/product/{id}/update-form")
-    public String updateForm(@PathVariable int id, HttpServletRequest request) {
-        ProductResponse.DetailDTO product = productService.findById(id);
-        request.setAttribute("product", product);
+    public String updateForm() {
         return "product/update-form";
     }
 
     @PostMapping("/product/{id}/update")
-    public String update(@PathVariable int id, ProductRequest.UpdateDTO reqDTO) {
-        productService.updateById(id, reqDTO); // 이미지 업데이트를 수행하는 서비스 메서드 호출
-        return "redirect:/product/" + id;
+    public String update() {
+        return "redirect:/";
     }
 
     // 상품 삭제하기
     @PostMapping("/product/{id}/delete")
-    public String delete(@PathVariable int id) {
-        productService.deleteById(id);
+    public String delete() {
         return "redirect:/";
     }
 
