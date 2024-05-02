@@ -16,41 +16,35 @@ public class CartController {
     // 장바구니 목록
     @GetMapping({"/cart-list"})
     public String list() {
-        return "/order/list";
+        return "";
     }
 
-    //상세보기
+    // 상세보기
     @GetMapping("/cart/{id}")
     public String detail() {
         return "";
     }
 
-    //구매하기
-    @PostMapping("/cart/{id}/order")
-    public String order() {
-        return "redirect:/order/list";
+    // 장바구니 담기
+    @PostMapping("/cart/{id}/save")
+    public String saveCart() {
+        return "redirect:/cart-list";
     }
 
-    //주문 폼
-    @GetMapping("/cart/{id}/order-form")
-    public String orderForm(){
-        return "";
-    }
+    // 수정하기 - 수량 수정은 버튼으로 하면 수정 폼이 필요 없을 거 같아요
+//    @GetMapping("/cart/{id}/update-form")
+//    public String updateForm(){
+//        return "";
+//    }
+//
+//    @PostMapping("/cart/{id}/update")
+//    public String update(){
+//        return "";
+//    }
 
-    //수정하기
-    @GetMapping("/cart/{id}/update-form")
-    public String updateForm(){
-        return "";
-    }
-
-    @PostMapping("/cart/{id}/update")
-    public String update(){
-        return "";
-    }
-
-    //삭제하기
+    // 삭제하기 - 주문하면 삭제되고 어디로 반환돼야 하는지 모르겠어요
     @PostMapping("/cart/{id}/delete")
     public String delete() {
-        return "redirect:/cart-list";
+        return "";
     }
 }
