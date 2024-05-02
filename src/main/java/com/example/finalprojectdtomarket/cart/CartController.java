@@ -13,44 +13,44 @@ public class CartController {
     private final HttpSession session;
 
 
-    //구매목록
-    @GetMapping({"/cart/list"})
+    // 장바구니 목록
+    @GetMapping({"/cart-list"})
     public String list() {
         return "/order/list";
     }
 
     //상세보기
-    @GetMapping("/order/{id}")
+    @GetMapping("/cart/{id}")
     public String detail() {
-        return "order/update-form";
+        return "";
     }
 
     //구매하기
-    @PostMapping("/order/{id}/add")
-    public String save() {
+    @PostMapping("/cart/{id}/order")
+    public String order() {
         return "redirect:/order/list";
     }
 
     //주문 폼
-    @GetMapping("/order/{id}/order-form")
+    @GetMapping("/cart/{id}/order-form")
     public String orderForm(){
-        return "order/order-form";
+        return "";
     }
 
     //수정하기
-    @GetMapping("/order/{id}/update-form")
+    @GetMapping("/cart/{id}/update-form")
     public String updateForm(){
-        return "order/update-form";
+        return "";
     }
 
-    @PostMapping("/order/{id}/update")
+    @PostMapping("/cart/{id}/update")
     public String update(){
-        return "redirect:/order/"+1;
+        return "";
     }
 
     //삭제하기
-    @PostMapping("/order/{id}/delete")
+    @PostMapping("/cart/{id}/delete")
     public String delete() {
-        return "redirect:/";
+        return "redirect:/cart-list";
     }
 }

@@ -15,7 +15,7 @@ public class ProductController {
     private final ProductService productService;
 
     // 상품목록보기
-    @GetMapping({"/"})
+    @GetMapping("/")
     public String list() {
         return "product/list";
     }
@@ -32,7 +32,7 @@ public class ProductController {
         return "product/save-form";
     }
 
-    @PostMapping("product/add")
+    @PostMapping("/product/save")
     public String save() {
         return "redirect:/";
     }
@@ -45,7 +45,7 @@ public class ProductController {
 
     @PostMapping("/product/{id}/update")
     public String update() {
-        return "redirect:/product/" + 1;
+        return "redirect:/";
     }
 
     // 상품 삭제하기

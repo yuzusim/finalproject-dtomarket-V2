@@ -18,16 +18,16 @@ public class Product {
     private Integer id;
 
     @Column(unique = true, length = 20, nullable = false)
-    private String name; //상품명
+    private String name;             // 상품명
 
     @Column(nullable = false)
-    private Integer price; //가격
+    private Integer price;           // 상품 가격
 
     @Column(nullable = false)
-    private Integer qty; //수량
+    private Integer qty;             // 상품 재고
 
-    //@Column(nullable = false)
-    private String img; //상품이미지
+    @Column(nullable = false)
+    private String img;              // 상품이미지
 
     @CreationTimestamp
     private Timestamp createdAt;
