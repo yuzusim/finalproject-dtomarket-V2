@@ -30,12 +30,11 @@ public class Order {
     private Product product;
 
     @Column
-    private String payment; //계좌이체
+    private Integer orderQty; //수량
 
     @Column
-    private Integer orderQty; //수량
-    @Column
     private Integer totalQty; //합계수량
+
     @Column
     private String status; //주문, 취소
 
@@ -43,11 +42,10 @@ public class Order {
     private Timestamp createdAt;
 
     @Builder
-    public Order(Integer id, User user, Product product, String payment, Integer orderQty, Integer totalQty, String status, Timestamp createdAt) {
+    public Order(Integer id, User user, Product product, Integer orderQty, Integer totalQty, String status, Timestamp createdAt) {
         this.id = id;
         this.user = user;
         this.product = product;
-        this.payment = payment;
         this.orderQty = orderQty;
         this.totalQty = totalQty;
         this.status = status;

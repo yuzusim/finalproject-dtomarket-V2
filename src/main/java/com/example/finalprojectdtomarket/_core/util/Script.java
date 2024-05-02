@@ -1,4 +1,4 @@
-package com.example.finalprojectdtomarket.util;
+package com.example.finalprojectdtomarket._core.util;
 
 public class Script {
     public static String back(String msg) {
