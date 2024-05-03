@@ -2,7 +2,7 @@
 
 <!--상품 수정하기 페이지 시작-->
 <div class="container w14 sub-page" style="margin: 0 auto;">
-    <form action="/product/{{product.id}}/update" method="post" enctype="multipart/form-data">
+    <form action="/product/1/update" method="post" enctype="multipart/form-data">
         <div class="d-flex prodsav-W">
             <!--상품 이미지 수정 등록-->
             <div class="prodsave-L">
@@ -11,7 +11,7 @@
                         <div class="d-flex justify-content-center align-items-center saveImg"
                              style=""
                              id="profilePreview">
-                            <img src="/upload/{{product.img}}" style="width: 100%">
+                            <img src="/upload/" style="width: 100%">
                             <!--<img class="card-img-top" src="/images/prod_2.jpg" alt="Card image" style="width:100%">-->
 
                         </div>
@@ -31,7 +31,7 @@
                         <tr>
                             <th>상품명</th>
                             <td>
-                                <input name="name" type="text" class="form-control" value="{{product.name}}" disabled>
+                                <input name="name" type="text" class="form-control" value="" disabled>
                             </td>
                         </tr>
                         <!--상품명-->
@@ -40,7 +40,7 @@
                         <tr>
                             <th>상품가격</th>
                             <td>
-                                <input name="price" type="number" class="form-control price" value="{{product.price}}">
+                                <input name="price" type="number" class="form-control price" value="">
                             </td>
                         </tr>
                         <!--상품가격-->
@@ -49,7 +49,7 @@
                         <tr>
                             <th>상품수량</th>
                             <td>
-                                <input name="qty" type="number" class="form-control price" value="{{product.qty}}">
+                                <input name="qty" type="number" class="form-control price" value="">
                             </td>
                         </tr>
                         <!--상품수량-->
@@ -63,21 +63,6 @@
 </div>
 <!--상품 수정하기 페이지 완료-->
 
-<script>
-    $(document).ready(function () {
-        // 파일 업로드 입력 필드 변경 이벤트 핸들러
-        $('#imageUpload').change(function (event) {
-            if (this.files && this.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    // 선택한 이미지를 미리보기로 표시
-                    $('#profilePreview').html('<img src="' + e.target.result + '" style="max-width: 100%;">');
-                };
-                // 파일을 읽어오고 미리보기에 표시
-                reader.readAsDataURL(this.files[0]);
-            }
-        });
-    });
-</script>
+
 
 {{> layout/footer}}
