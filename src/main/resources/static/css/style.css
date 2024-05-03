@@ -331,7 +331,7 @@ nav{
     margin: 0 20px 50px 0;
 }
 
-/*상품 슬라이더 버튼 부분*/
+/*메인 상품 슬라이더 버튼 부분*/
 .swiper-button-prev,
 .swiper-container-rtl .swiper-button-next{
     width: 100px !important; height: 100px !important;
@@ -349,7 +349,7 @@ nav{
 }
 
 
-/*상품 카드부분*/
+/*메인 상품 카드부분*/
 .card{
     --bs-card-border-color: none !important;
     --bs-card-inner-border-radius: none !important;
@@ -368,6 +368,7 @@ nav{
     padding: 10px;
 }
 
+
 /*sns가입 부분*/
 .sns-login-w{border-top:1px solid #ddd;}
 .sns-login-w button{color:#3c1e1e;}
@@ -382,6 +383,27 @@ nav{
     background-size: cover;
 }
 
+/*구매수량 증가버튼*/
+.decrease-btn{
+    border: 1px solid #ddd; background-color: #fff;
+    border-top-left-radius:5px;
+    border-bottom-left-radius:5px;
+    width:20px;
+}
+.increase-btn{
+    border: 1px solid #ddd; background-color: #fff;
+    border-top-right-radius:5px;
+    border-bottom-right-radius:5px;
+    width:20px;
+}
+.quantity{
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-left: none;
+    border-right: none;
+}
+
+/**/
 
 /*푸터*/
 #footer{

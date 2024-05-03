@@ -23,16 +23,21 @@
                         <table class="prod-info">
                             <!--상품명-->
                             <tr>
-                                <th>상품명 :</th>
-                                <td>{{product.name}}</td>
+                                <th>상품명</th>
+                                <td>
+                                    <input id="name" name="name" type="text" class="form-control"
+                                           value="{{product.name}}" disabled style="width: 100%">
+                                </td>
                             </tr>
                             <!--상품명-->
 
                             <!--상품가격-->
                             <tr>
-                                <th>상품가격 :</th>
-                                <td>{{product.price}}</td>
-
+                                <th>상품가격</th>
+                                <td colspan="2">
+                                    <input name="price" type="number" class="form-control price"
+                                           value="{{product.price}}" disabled style="width: 100%">
+                                </td>
                             </tr>
                             <!--상품가격-->
 
@@ -40,41 +45,29 @@
                             <tr>
                                 <th>상품수량</th>
                                 <td colspan="2">
-                                    <!--
-                                    <input name="qty" type="number" class="form-control col ml-5"
-                                           placeholder="상품 수량을 적어주세요">
-                                    -->
                                     <!-- 상품의 구매 수량만큼 표시됩니다 -->
-
                                     <div class="quantity-controls d-flex"
-                                         style="width: 100px; text-align: center; margin:0 auto">
-                                        <button type="button" class="decrease-btn" aria-label="수량내리기">-</button>
-                                        <!--                                        <input type="hidden" name="orderId" value="id">-->
+                                         style="width: 100px; text-align: center; ">
+                                        <button type="button" class="decrease-btn" aria-label="수량내리기" style="">-</button>
                                         <input type="text" class="quantity" name="orderQty" value="{{product.id}}"
-                                               style="text-align: center;">
+                                               style="text-align: center; ">
                                         <button type="button" class="increase-btn" aria-label="수량올리기">+</button>
                                     </div>
-                                    <div class="" style="text-align: end">재고 수량: {{product.qty}} </div>
-
                                 </td>
                             </tr>
                             <!--상품수량-->
                         </table>
                         <!--상품 table-->
 
-                        <!--구매 btn-->
+                        <!--장바구니 btn-->
                         <div class="row pr-5 pt-5" style="">
                             <button class="btn btn-mint" type="submit" height="36" radius="3">
-                                <span class="">구매하기</span>
+                                <span class="">장바구니 담기</span>
                             </button>
-                            <!--                        <span class="col-4 ml-15" style="width:200px">-->
-                            <!--                            <a href="/order//order-form" class="btn btn-warning" style="width:100%">구매하기</a>-->
-                            <!--                        </span>-->
                         </div>
-                        <!--구매 btn-->
+                        <!--장바구니 btn-->
                     </div>
                     <!--구매정보 체크-->
-
                 </div>
             </form>
         {{/isCheck}}
@@ -129,13 +122,30 @@
                             <!--상품가격-->
 
                             <!--상품수량-->
+
+                            <!--상품수량-->
                             <tr>
                                 <th>상품수량</th>
                                 <td colspan="2">
-                                    <input name="qty" type="number" class="form-control col ml-5"
-                                           value="{{product.qty}}" disabled>
+                                    <!-- 상품의 구매 수량만큼 표시됩니다 -->
+                                    <div class="quantity-controls d-flex"
+                                         style="width: 100px; text-align: center; ">
+                                        <button type="button" class="decrease-btn" aria-label="수량내리기" style="">-</button>
+                                        <input type="text" class="quantity" name="orderQty" value="{{product.qty}}"
+                                               style="text-align: center; " >
+                                        <button type="button" class="increase-btn" aria-label="수량올리기">+</button>
+                                    </div>
                                 </td>
                             </tr>
+                            <!--상품수량-->
+
+<!--                            <tr>-->
+<!--                                <th>상품수량</th>-->
+<!--                                <td colspan="2">-->
+<!--                                    <input name="qty" type="number" class="form-control col ml-5"-->
+<!--                                           value="product.qty}}" disabled>-->
+<!--                                </td>-->
+<!--                            </tr>-->
                             <!--상품수량-->
                         </table>
 
@@ -169,32 +179,7 @@
 <!--상품 상세보기 페이지 완료-->
 
 
-<!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
-<!--<script>-->
-<!--    $(document).ready(function () {-->
-<!--        // 수량 증가 버튼 클릭 이벤트-->
-<!--        $(".increase-btn").click(function () {-->
-<!--            var $quantityInput = $(this).siblings(".quantity");-->
-<!--            var currentQuantity = parseInt($quantityInput.val());-->
-<!--            $quantityInput.val(currentQuantity + 1);-->
-<!--        });-->
 
-<!--        // 수량 감소 버튼 클릭 이벤트-->
-<!--        $(".decrease-btn").click(function () {-->
-<!--            var $quantityInput = $(this).siblings(".quantity");-->
-<!--            var currentQuantity = parseInt($quantityInput.val());-->
-<!--            if (currentQuantity > 1) {-->
-<!--                $quantityInput.val(currentQuantity - 1);-->
-<!--            }-->
-<!--        });-->
-
-<!--        // 재고 수량 계산하여 표시-->
-<!--        var productQty = parseInt("{{product.qty}}");-->
-<!--        var orderQty = parseInt($(".quantity").val());-->
-<!--        var remainingQty = productQty - orderQty;-->
-<!--        $(".remaining-qty").text("재고 수량: " + remainingQty);-->
-<!--    });-->
-<!--</script>-->
 
 
 
