@@ -1,4 +1,4 @@
-package com.example.finalprojectdtomarket.item;
+package com.example.finalprojectdtomarket.orderItem;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @RequiredArgsConstructor
 @Controller
-public class ItemController {
+public class OrderItemController {
 
-    private final ItemService itemService;
+    private final OrderItemService orderItemService;
     private final HttpSession session;
 
     // 주문 결과 목록

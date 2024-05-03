@@ -1,4 +1,4 @@
-package com.example.finalprojectdtomarket.item;
+package com.example.finalprojectdtomarket.orderItem;
 
 import com.example.finalprojectdtomarket.order.Order;
 import com.example.finalprojectdtomarket.product.Product;
@@ -13,30 +13,27 @@ import java.sql.Timestamp;
 
 @NoArgsConstructor
 @Data
-@Table(name = "item_tb")
+@Table(name = "order_item_tb")
 @Entity
-public class Item {
+public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id")
     private Product product;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id")
     private Order order;
 
     @CreationTimestamp
     private Timestamp createdAt;
 
     @Builder
-    public Item(Integer id, User user, Product product, Order order, Timestamp createdAt) {
+    public OrderItem(Integer id, User user, Product product, Order order, Timestamp createdAt) {
         this.id = id;
         this.user = user;
         this.product = product;
