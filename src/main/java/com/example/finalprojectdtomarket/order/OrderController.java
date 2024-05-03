@@ -15,7 +15,7 @@ public class OrderController {
     // 주문 목록
     @GetMapping({"/order-list"})
     public String list() {
-        return "order/list";
+        return "";
     }
 
     // 주문하기
