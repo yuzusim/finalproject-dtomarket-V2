@@ -3,7 +3,7 @@
 
     <!--    <form action="/order/add" method="post" enctype="multipart/form-data">-->
 
-    <!--장바구니 시작-->
+    <!--장바구니 시작!!-->
     <div class="main_title mb-100 fw-600">
         <h2>장바구니</h2>
     </div>
@@ -19,8 +19,7 @@
                     <th>상품가격</th>
                     <th>선택하기</th>
                 </tr>
-                {{#orderSaveList}}
-                    <input type="hidden" name="productId" value="{{id}}">
+                    <input type="hidden" name="productId" value="">
                     <tr>
                         <td>1</td>
                         <td>
@@ -32,7 +31,7 @@
                         </td>
                         <td>
                             5
-                            <!-- 버튼으로 도 수량 올리고 싶을시 나중에 부가로 할시
+                            <!-- 버튼으로 도 수량 올리고 싶을시 나중에 부가 하고 싶을때 쓰기
                            <div class="quantity-controls d-flex"
                                 style="width: 100px; text-align: center; margin:0 auto">
                                <button type="button" class="decrease-btn" aria-label="수량내리기">-</button>
@@ -52,7 +51,6 @@
                         </label>
 
                     </tr>
-                {{/orderSaveList}}
 
             </table>
         </div>
