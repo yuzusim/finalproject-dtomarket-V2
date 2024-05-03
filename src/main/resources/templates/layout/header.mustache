@@ -24,6 +24,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.3.0/mustache.min.js"></script>
 </head>
 
 <body>
@@ -39,97 +41,74 @@
             <!--로고-->
 
             <div class="collapse navbar-collapse d-flex justify-content-between" id="collapsibleNavbar">
-                {{#sessionUser}}
-                    <!--개인 로그인시 볼 수 있는 헤더-->
-                    {{#isCheck}}
-                        <ul class="navbar-nav">
-                            <li class="nav-item"><a class="nav-link" href="/order/list">내 구매 목록</a></li>
-                        </ul>
 
-                        <!--검색바를 가운데 배치 시킬시 layuout 슬라이더로 돌아가는 걸로 빼서 구현해야 함-->
-                        <div class="search-wrap search-bg">
-                            <div class="search-bg-opcity">
-                                <form action="/" method="get" class="search-from d-flex" id="search">
-                                    <input class="form-control me-2" type="text" placeholder="Search" value="" name="keyword"
-                                           required>
-                                    <button class="btn-m btn-mint form-control" style="width:100px; padding:10px !important;">
-                                        <i class="fa-solid fa-magnifying-glass"></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                        <!--검색바를 가운데 배치 시킬시 layuout 슬라이더로 돌아가는 걸로 빼서 구현해야 함-->
+<!--                &lt;!&ndash;개인 로그인시 볼 수 있는 헤더&ndash;&gt;-->
+<!--                <ul class="navbar-nav">-->
+<!--                    <li class="nav-item"><a class="nav-link" href="/order/list">내 구매 목록</a></li>-->
+<!--                </ul>-->
 
-                        <!--로그인 부분-->
-                        <ul class="navbar-nav log">
-                            <li class="nav-item"><a class="nav-link" href="/logout">logout</a></li>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="/order/order-form"><i
-                                    class="fa-solid fa-cart-shopping"></i></a>
-                            </li>
-                        </ul>
-                        <!--개인 로그인시 볼 수 있는 헤더-->
-                    {{/isCheck}}
-                    {{^isCheck}}
-                        <!--판매 관리자 로그인시 볼 수 있는 헤더-->
-                        <ul class="navbar-nav">
-                            <li class="nav-item"><a class="nav-link" href="/product/save-form">상품등록페이지</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/">상품목록페이지</a></li>
-                        </ul>
+<!--                &lt;!&ndash;검색바 부분 시작&ndash;&gt;-->
+<!--                &lt;!&ndash;검색바 부분 끝&ndash;&gt;-->
+<!--                -->
+<!--                &lt;!&ndash;로그인 부분&ndash;&gt;-->
+<!--                <ul class="navbar-nav log">-->
+<!--                    <li class="nav-item"><a class="nav-link" href="/logout">logout</a></li>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item"><a class="nav-link" href="/order/order-form"><i-->
+<!--                            class="fa-solid fa-cart-shopping"></i></a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--                &lt;!&ndash;개인 로그인시 볼 수 있는 헤더&ndash;&gt;-->
 
-                        <!--검색바를 가운데 배치 시킬시 layuout 슬라이더로 돌아가는 걸로 빼서 구현해야 함-->
-                        <div class="search-wrap search-bg">
-                            <div class="search-bg-opcity">
-                                <form action="/" method="get" class="search-from d-flex" id="search">
-                                    <input class="form-control me-2" type="text" placeholder="Search" value="" name="keyword"
-                                           required>
-                                    <button class="btn-m btn-mint form-control" style="width:100px; padding:10px !important;">
-                                        <i class="fa-solid fa-magnifying-glass"></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                        <!--검색바를 가운데 배치 시킬시 layuout 슬라이더로 돌아가는 걸로 빼서 구현해야 함-->
+<!--                &lt;!&ndash;판매 관리자 로그인시 볼 수 있는 헤더&ndash;&gt;-->
+<!--                <ul class="navbar-nav">-->
+<!--                    <li class="nav-item"><a class="nav-link" href="/product/save-form">상품등록페이지</a></li>-->
+<!--                    <li class="nav-item"><a class="nav-link" href="/">상품목록페이지</a></li>-->
+<!--                </ul>-->
 
-                        <ul class="navbar-nav log">
-                            <li class="nav-item"><a class="nav-link" href="/logout">logout</a></li>
-                        </ul>
-                        <!--판매 관리자 로그인시 볼 수 있는 헤더-->
-                    {{/isCheck}}
-                {{/sessionUser}}
+<!--                &lt;!&ndash;검색바 부분 시작&ndash;&gt;-->
+<!--                &lt;!&ndash;검색바 부분 끝&ndash;&gt;-->
 
-                {{^sessionUser}}
-                    <!--비로그인시 볼 수 있는 헤더-->
-                    <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link" href="/"></a></li>
-                    </ul>
+<!--                <ul class="navbar-nav log">-->
+<!--                    <li class="nav-item"><a class="nav-link" href="/logout">logout</a></li>-->
+<!--                </ul>-->
+<!--                &lt;!&ndash;판매 관리자 로그인시 볼 수 있는 헤더&ndash;&gt;-->
 
-                    <!--검색바를 가운데 배치 시킬시 layuout 슬라이더로 돌아가는 걸로 빼서 구현해야 함-->
-                    <div class="search-wrap search-bg">
-                        <div class="search-bg-opcity">
-                            <form action="/" method="get" class="search-from d-flex" id="search">
-                                <input class="form-control me-2" type="text" placeholder="Search" value="" name="keyword"
-                                       required>
-                                <button class="btn-m btn-mint form-control" style="width:100px; padding:10px !important;">
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                </button>
-                            </form>
-                        </div>
+
+                <!--비로그인시 볼 수 있는 헤더-->
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="/"></a></li>
+                </ul>
+
+                <!--검색바 부분 시작
+                나중에 구현시 검색바 > layout/searchbar}} 로 문법만 넣고
+                layout -> searchbar 로 가서 기능 구현 하세요.
+                -->
+                <div class="search-wrap search-bg">
+                    <div class="search-bg-opcity">
+                        <form action="/" method="get" class="search-from d-flex" id="search">
+                            <input class="form-control me-2" type="text" placeholder="Search" value="" name="keyword"
+                                   required>
+                            <button class="btn-m btn-mint form-control" style="width:100px; padding:10px !important;">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                        </form>
                     </div>
-                    <!--검색바를 가운데 배치 시킬시 layuout 슬라이더로 돌아가는 걸로 빼서 구현해야 함-->
+                </div>
+                <!--검색바 부분 끝-->
 
-                    <!--로그인 부분-->
-                    <ul class="navbar-nav log">
-                        <li class="nav-item"><a class="nav-link" href="/join-form">join</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/login-form">login
-                            <!--<i class="fa-solid fa-user"></i>-->
-                        </a>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="/cart"><i class="fa-solid fa-cart-shopping"></i></a>
-                        </li>
-                    </ul>
-                    <!--비로그인시 볼 수 있는 헤더-->
-                {{/sessionUser}}
+                <!--로그인 부분-->
+                <ul class="navbar-nav log">
+                    <li class="nav-item"><a class="nav-link" href="/join-form">join</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/login-form">login
+                        <!--<i class="fa-solid fa-user"></i>-->
+                    </a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="/cart"><i class="fa-solid fa-cart-shopping"></i></a>
+                    </li>
+                </ul>
+                <!--비로그인시 볼 수 있는 헤더-->
+
             </div>
         </div>
     </nav>
