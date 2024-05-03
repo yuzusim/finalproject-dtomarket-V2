@@ -1,13 +1,13 @@
-package com.example.finalprojectdtomarket.item;
+package com.example.finalprojectdtomarket.orderItem;
 
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 @DataJpaTest
-public class ItemJPARepositoryTest {
+public class OrderItemJPARepositoryTest {
     @Autowired
-    private ItemJPARepository applyJPARepository;
+    private OrderItemJPARepository orderItemJPARepository;
     @Autowired
     private EntityManager em;
 }
