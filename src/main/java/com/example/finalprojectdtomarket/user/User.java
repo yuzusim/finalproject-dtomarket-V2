@@ -31,7 +31,7 @@ public class User {
     private String email;     //이메일
 
     @Column(nullable = false)
-    private Date birth;       //이메일
+    private Date birth;       //생년월일
 
     @Column
     private Integer role;     // 1 -> admin, 2 -> user
