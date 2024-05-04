@@ -1,10 +1,13 @@
 package com.example.finalprojectdtomarket.user;
 
+import com.example.finalprojectdtomarket._core.util.ApiUtil;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @RequiredArgsConstructor
@@ -29,8 +32,13 @@ public class UserController {
 
     //회원가입 중복체크
     @GetMapping("/api/username-same-check")
-    public String usernameSameCheck() {
-        return "";
+    public @ResponseBody ApiUtil<?> usernameSameCheck(@RequestParam("username") String username) {
+        User user = userService.getUsername(username);
+        if (user == null) { // 회원가입 해도 된다.
+            return new ApiUtil<>(true);
+        } else { // 회원가입 하면 안된다.
+            return new ApiUtil<>(false);
+        }
     }
 
 
