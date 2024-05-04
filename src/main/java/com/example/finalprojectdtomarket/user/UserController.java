@@ -19,14 +19,14 @@ public class UserController {
 
     // 회원가입
     @PostMapping("/join")
-    public String join() {
-        session.setAttribute("role", 2);
+    public String join(UserRequest.JoinDTO reqDTO) {
+        userService.joinUser(reqDTO);
         return "redirect:/login-form";
     }
 
     @GetMapping("/join-form")
-    public String joinForm(UserRequest.JoinDTO reqDTO) {
-        userService.joinUser(reqDTO);
+    public String joinForm() {
+        session.setAttribute("role", 2);
         return "user/join-form";
     }
 
