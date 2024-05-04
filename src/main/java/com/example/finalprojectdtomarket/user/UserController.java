@@ -1,6 +1,7 @@
 package com.example.finalprojectdtomarket.user;
 
 import com.example.finalprojectdtomarket._core.util.ApiUtil;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -56,15 +57,20 @@ public class UserController {
 
     // 회원 정보 수정
     @PostMapping("/user/update")
-    public String update() {
+    public String update(UserRequest.UpdateDTO reqDTO) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        User newSessionUser = userService.findById(sessionUser.getId(), reqDTO);
+        session.setAttribute("sessionUser", newSessionUser);
         return "redirect:/";
     }
 
     @GetMapping("/user/update-form")
-    public String updateForm() {
+    public String updateForm(HttpServletRequest request, UserRequest.UpdateDTO reqDTO) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        User user = userService.findById(sessionUser.getId(), reqDTO);
+        request.setAttribute("user", user);
         return "user/update-form";
     }
-
 
     // 로그아웃
     @GetMapping("/logout")

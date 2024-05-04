@@ -7,6 +7,12 @@ import java.sql.Date;
 
 public class UserRequest {
 
+    //회원정보수정
+    @Data
+    public static class UpdateDTO{
+        private String password;
+    }
+
     @Data
     public static class JoinDTO {
         private String password;

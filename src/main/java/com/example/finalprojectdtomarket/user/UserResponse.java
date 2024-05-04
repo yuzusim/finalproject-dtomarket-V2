@@ -5,6 +5,8 @@ import lombok.Data;
 import java.sql.Date;
 
 public class UserResponse {
+
+
     @Data
     public static class JoinDTO {
         private String password;
