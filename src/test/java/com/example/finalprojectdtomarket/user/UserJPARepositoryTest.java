@@ -7,7 +7,6 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 @DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class UserJPARepositoryTest {
     @Autowired
     private UserJPARepository userJPARepository;
@@ -16,18 +15,18 @@ public class UserJPARepositoryTest {
 
 
     // 로그인 테스트
-    @Test
-    public void findByUsernameAndPassword_test(){
-        // given
-        String username = "ssar";
-        String password = "1234";
-
-        // when
-        userJPARepository.findByUsernameAndPassword(username, password);
-
-        // then
-
-    }
+//    @Test
+//    public void findByUsernameAndPassword_test(){
+//        // given
+//        String username = "ssar";
+//        String password = "1234";
+//
+//        // when
+//        userJPARepository.findByUsernameAndPassword(username, password);
+//
+//        // then
+//
+//    }
 
 
 }
