@@ -21,19 +21,15 @@ INSERT INTO cart_tb(user_id, product_id, address, order_qty, total_qty, total_pr
 INSERT INTO cart_tb(user_id, product_id, address, order_qty, total_qty, total_price, created_at) VALUES (4, 3, '부산광역시 진구 해맞이로', 20, 80, 100000, NOW());
 
 -- order 정보
-INSERT INTO order_tb(user_id, product_id, cart_id, created_at) VALUES (2, 1, 1, NOW());
-INSERT INTO order_tb(user_id, product_id, cart_id, created_at) VALUES (2, 3, 2, NOW());
-INSERT INTO order_tb(user_id, product_id, cart_id, created_at) VALUES (2, 4, 3, NOW());
-INSERT INTO order_tb(user_id, product_id, cart_id, created_at) VALUES (3, 2, 4, NOW());
-INSERT INTO order_tb(user_id, product_id, cart_id, created_at) VALUES (3, 5, 5, NOW());
-INSERT INTO order_tb(user_id, product_id, cart_id, created_at) VALUES (4, 2, 6, NOW());
-INSERT INTO order_tb(user_id, product_id, cart_id, created_at) VALUES (4, 3, 7, NOW());
+INSERT INTO order_tb(user_id, status, sum, created_at) VALUES (2, '주문완료', 160000 ,NOW());
+INSERT INTO order_tb(user_id, status, sum, created_at) VALUES (3, '주문취소', 100000, NOW());
+INSERT INTO order_tb(user_id, status, sum, created_at) VALUES (4, '주문완료', 106000, NOW());
 
 -- order-item 정보
-INSERT INTO order_item_tb(user_id, product_id, order_id, status, created_at) VALUES (2, 1, 1, '주문완료', NOW());
-INSERT INTO order_item_tb(user_id, product_id, order_id, status, created_at) VALUES (2, 3, 2, '주문완료', NOW());
-INSERT INTO order_item_tb(user_id, product_id, order_id, status, created_at) VALUES (2, 4, 3, '주문취소', NOW());
-INSERT INTO order_item_tb(user_id, product_id, order_id, status, created_at) VALUES (3, 2, 4, '주문취소', NOW());
-INSERT INTO order_item_tb(user_id, product_id, order_id, status, created_at) VALUES (3, 5, 5, '주문취소', NOW());
-INSERT INTO order_item_tb(user_id, product_id, order_id, status, created_at) VALUES (4, 2, 6, '주문완료', NOW());
-INSERT INTO order_item_tb(user_id, product_id, order_id, status, created_at) VALUES (4, 3, 7, '주문완료', NOW());
+INSERT INTO order_item_tb(user_id, product_id, order_id, created_at) VALUES (2, 1, 1, NOW());
+INSERT INTO order_item_tb(user_id, product_id, order_id, created_at) VALUES (2, 3, 1, NOW());
+INSERT INTO order_item_tb(user_id, product_id, order_id, created_at) VALUES (2, 4, 1, NOW());
+INSERT INTO order_item_tb(user_id, product_id, order_id, created_at) VALUES (3, 2, 2, NOW());
+INSERT INTO order_item_tb(user_id, product_id, order_id, created_at) VALUES (3, 5, 2, NOW());
+INSERT INTO order_item_tb(user_id, product_id, order_id, created_at) VALUES (4, 2, 3, NOW());
+INSERT INTO order_item_tb(user_id, product_id, order_id, created_at) VALUES (4, 3, 3, NOW());
