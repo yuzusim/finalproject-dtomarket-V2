@@ -36,6 +36,9 @@ public class Cart {
     @Column
     private Integer totalQty;   // 남은 상품 총 수량
 
+    @Column
+    private Integer totalPrice;   // 구매 총 가격
+
     @CreationTimestamp
     private Timestamp createdAt;
 
