@@ -29,15 +29,19 @@ public class OrderItem {
     @ManyToOne(fetch = FetchType.LAZY)
     private Order order;
 
-    @CreationTimestamp
+    @Column
+    private String status;      // 주문 상태 -> true: 주문 완료, false: 주문 취소
+
+//    @CreationTimestamp
     private Timestamp createdAt;
 
     @Builder
-    public OrderItem(Integer id, User user, Product product, Order order, Timestamp createdAt) {
+    public OrderItem(Integer id, User user, Product product, Order order, String status, Timestamp createdAt) {
         this.id = id;
         this.user = user;
         this.product = product;
         this.order = order;
+        this.status = status;
         this.createdAt = createdAt;
     }
 }

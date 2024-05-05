@@ -36,7 +36,7 @@ public class User {
     @Column
     private Integer role;     // 1 -> admin, 2 -> user
 
-    @CreationTimestamp // pc -> db (날짜주입)
+//    @CreationTimestamp // pc -> db (날짜주입)
     private Timestamp createdAt;
 
     @Builder

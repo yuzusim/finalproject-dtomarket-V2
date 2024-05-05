@@ -39,7 +39,7 @@ public class Cart {
     @Column
     private Integer totalPrice;   // 구매 총 가격
 
-    @CreationTimestamp
+//    @CreationTimestamp
     private Timestamp createdAt;
 
     @Builder
