@@ -2,7 +2,9 @@
 <div class="container w14 sub-page" style="margin: 0 auto;">
 
     <!--상품 상세보기 페이지 시작-->
-        <!--개인 로그인시-->
+{{#sessionUser}}
+    {{#isCheck}}
+            <!--개인 로그인시-->
             <form action="/order/1/add" method="post">
                 <div class="d-flex prodsav-W">
                     <!--상품이미지-->
@@ -46,7 +48,8 @@
                                     <!-- 상품의 구매 수량만큼 표시됩니다 value 명에 변수 값만 넣어주세요-->
                                     <div class="quantity-controls d-flex"
                                          style="width: 100px; text-align: center; ">
-                                        <button type="button" class="decrease-btn" aria-label="수량내리기" style="">-</button>
+                                        <button type="button" class="decrease-btn" aria-label="수량내리기" style="">-
+                                        </button>
                                         <input type="text" class="quantity" name="orderQty" value=""
                                                style="text-align: center; ">
                                         <button type="button" class="increase-btn" aria-label="수량올리기">+</button>
@@ -68,9 +71,11 @@
                     <!--구매정보 체크-->
                 </div>
             </form>
+    {{/isCheck}}
         <!--개인 로그인시-->
 
-        <!--판매자 로그인시-->
+    {{^isCheck}}
+            <!--판매자 로그인시-->
             <div class="d-flex prodsav-W">
                 <!--상품 이미지-->
                 <div class="prodsave-L">
@@ -145,11 +150,11 @@
                 </div>
             </div>
         </div>
-
-    <!--판매자 로그인시-->
+    {{/isCheck}}
+{{/sessionUser}}
+<!--판매자 로그인시-->
 
 <!--비회원 로그인시 -->
-
 
 
 </div>
@@ -176,7 +181,7 @@
         });
 
         // 재고 수량 계산하여 표시
-        var productQty = parseInt("{{product.qty}}");
+        var productQty = parseInt("product.qty}}");
         var orderQty = parseInt($(".quantity").val());
         var remainingQty = productQty - orderQty;
         $(".remaining-qty").text("재고 수량: " + remainingQty);

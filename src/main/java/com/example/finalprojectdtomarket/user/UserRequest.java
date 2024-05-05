@@ -7,11 +7,21 @@ import java.sql.Date;
 
 public class UserRequest {
 
+    // 로그인 용
+    @Data
+    public static class LoginDTO {
+        private String username;
+        private String password;
+
+    }
+
+
     //회원정보수정
     @Data
     public static class UpdateDTO{
         private String password;
     }
+
 
     @Data
     public static class JoinDTO {

@@ -30,17 +30,21 @@ public class Order {
     private Cart cart;
 
     @Column
+    private Integer sum;
+
+    @Column
     private String status;      // 주문 상태 -> true: 주문 완료, false: 주문 취소
 
     @CreationTimestamp
     private Timestamp createdAt;
 
     @Builder
-    public Order(Integer id, User user, Product product, Cart cart, String status, Timestamp createdAt) {
+    public Order(Integer id, User user, Product product, Cart cart, Integer sum, String status, Timestamp createdAt) {
         this.id = id;
         this.user = user;
         this.product = product;
         this.cart = cart;
+        this.sum = sum;
         this.status = status;
         this.createdAt = createdAt;
     }

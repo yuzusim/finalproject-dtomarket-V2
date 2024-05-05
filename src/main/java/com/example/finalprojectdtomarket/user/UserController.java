@@ -45,7 +45,11 @@ public class UserController {
 
     // 로그인
     @PostMapping("/login")
-    public String login() {
+    public String login(UserRequest.LoginDTO requestDTO) {
+        UserResponse.LoginDTO sessionUser = userService.login(requestDTO);
+        session.setAttribute("sessionUser", sessionUser);
+        session.setAttribute("isCheck", sessionUser.getIsCheck());
+
         return "redirect:/";
     }
 
@@ -75,6 +79,7 @@ public class UserController {
     // 로그아웃
     @GetMapping("/logout")
     public String logout() {
+        session.invalidate();
         return "redirect:/";
     }
 }
