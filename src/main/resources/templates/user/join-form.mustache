@@ -14,7 +14,7 @@
             <p>
                 <span class="point-color">*</span> 필수입력사항
             </p>
-            <form action="/join" method="post" onsubmit="">
+            <form action="/join" method="post" onsubmit="return valid()">
                 <table class="join-table ft-18 mb-30">
                     <!--개인 이름-->
                     <tr>
@@ -78,21 +78,16 @@
     </div>
 </div>
 <script>
-    let isSameCheck = false;
-
-    $("#username").blur(() => {
-        if (isSameCheck == false) {
-            alert("아이디 중복체크를 해야 합니다");
-        } else {
-            isSameCheck == true;
-        }
-    });
+    let isSameCheck = false; // 중복 확인 여부를 저장하는 변수
 
     function valid() {
-        if (isSameCheck == false) {
-            alert("아이디 중복체크를 해야 합니다");
+        if (!isSameCheck) {
+            alert("아이디 중복확인이 실패했습니다.");
+            return false; // 폼 제출 방지
         }
-        return isSameCheck;
+        // 여기에 추가적인 유효성 검사 로직을 구현할 수 있습니다.
+        alert("회원가입이 완료되었습니다!"); // 유효성 검사가 성공적으로 완료됨
+        return true; // 폼 제출 허용
     }
 
     function usernameSameCheck() {
@@ -103,13 +98,12 @@
             url: "/api/username-same-check?username=" + username,
             type: "get"
         }).done((res) => {
-            console.log(res);
-            if (res.body == true) {
+            if (res.body === true) {
                 isSameCheck = true;
                 alert("사용 가능한 아이디입니다.");
             } else {
                 isSameCheck = false;
-                alert("동일한 아이디가 존재합니다");
+                alert("동일한 아이디가 존재합니다.");
             }
         }).fail((res) => {
             alert(res.responseJSON.msg);

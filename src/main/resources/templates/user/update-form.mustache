@@ -1,26 +1,81 @@
 {{> layout/header}}
 
-<div class="container p-5">
+<div class="container sub-page">
 
     <!-- 요청을 하면 localhost:8080/join POST로 요청됨
     username=사용자입력값&password=사용자값&email=사용자입력값 -->
+    <div class="card" style="width:600px; margin: 0 auto;">
+        <div class="main_title">
+            <h2>회원정보수정</h2>
+        </div>
 
-    <div class="card">
-        <div class="card-header"><b>회원수정을 해주세요</b></div>
-        <div class="card-body">
-            <form action="/user/update" method="post" enctype="application/x-www-form-urlencoded">
-                <div class="mb-3">
-                    <input type="text" class="form-control" placeholder="Enter username" name="username" disabled>
-                </div>
-                <div class="mb-3">
-                    <input type="password" class="form-control" placeholder="Enter password" name="password">
-                </div>
-                <div class="mb-3">
-                    <input type="email" class="form-control" placeholder="Enter email" name="email" disabled>
-                </div>
-                <button type="submit" class="btn btn-primary form-control">회원가입수정</button>
+        <!--수정하기 폼 박스-->
+        <div class="update-box join-box">
+            <p>
+                <span class="point-color">*</span> 필수입력사항
+            </p>
+            <form action="/user/update" method="post">
+                <table class="update-table join-table ft-18 mb-30">
+                    <!--개인 이름-->
+                    <tr>
+                        <th>이름<span class="point-color">*</span></th>
+                        <td>
+                            <input value="usar.username" id="username" type="text" class="form-control text-secondary"
+                                   placeholder="이름을 입력하세요."
+                                   name="username" disabled>
+                        </td>
+                        <!--아이디중복체크-->
+                        <td class="pl-10">
+                            <button type="button" onclick="usernameSameCheck()" class="btn" style="height:60px; padding:20px">아이디중복체크</button>
+                        </td>
+                        <!--아이디중복체크-->
+                    </tr>
+                    <!--개인 이름-->
+
+                    <!-- 비밀번호 -->
+                    <tr>
+                        <th>비밀번호<span class="point-color">*</span></th>
+                        <td colspan="2">
+                            <input type="password" class="form-control" placeholder="비밀번호를 입력하세요." name="password">
+                        </td>
+                    </tr>
+                    <!-- 비밀번호 -->
+
+                    <!--전화번호-->
+                    <tr>
+                        <th>전화번호<span class="point-color">*</span></th>
+                        <td colspan="2">
+                            <input value="user.phone" type="phone" class="form-control" placeholder="전화번호를 입력하세요." name="phone" disabled>
+                        </td>
+                    </tr>
+                    <!--전화번호-->
+
+                    <!--이메일-->
+                    <tr>
+                        <th>이메일<span class="point-color">*</span></th>
+                        <td colspan="2">
+                            <input value="user.email" type="email" class="form-control" placeholder="이메일을 입력하세요." name="email" disabled>
+                        </td>
+                    </tr>
+                    <!--이메일-->
+
+                    <!--생년월일 입력-->
+                    <tr>
+                        <th>생년월일<span class="point-color">*</span></th>
+                        <td colspan="2">
+                            <input value="user.birth" name="birth" type="date" class="form-control" placeholder="생년월일을 선택하세요" disabled>
+                        </td>
+                    </tr>
+                    <!--생년월일 입력-->
+
+                </table>
+                <!--회원수정하기버튼-->
+                <button type="submit" class="btn btn-mint form-control ft-18">회원정보수정</button>
+                <!--회원수정하기버튼-->
             </form>
         </div>
+        <!--수정하기 폼 박스-->
+
     </div>
 </div>
 
