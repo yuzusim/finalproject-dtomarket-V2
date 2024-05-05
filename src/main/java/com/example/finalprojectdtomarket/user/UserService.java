@@ -13,10 +13,15 @@ public class UserService {
     private final UserJPARepository userJPARepository;
 
     //로그인 용
-    public User loginUser(UserRequest.LoginDTO requestDTO) {
+    public UserResponse.LoginDTO login(UserRequest.LoginDTO requestDTO) {
         User sessionUser = userJPARepository.findByUsernameAndPassword(requestDTO.getUsername(), requestDTO.getPassword())
                 .orElseThrow(() -> new Exception401("아이디 혹은 비밀번호가 일치하지 않습니다."));
-        return sessionUser;
+
+        //sessionUser.getRole 에서 2가 들어오면 true (2면 유저) 유저냐? 예스예스
+        Boolean isCheck = sessionUser.getRole() == 2;
+
+        return new UserResponse.LoginDTO(sessionUser, isCheck);
+
     }
 
     public User getUsername(String username) {

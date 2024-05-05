@@ -45,8 +45,9 @@ public class UserController {
     // 로그인
     @PostMapping("/login")
     public String login(UserRequest.LoginDTO requestDTO) {
-        User sessionUser = userService.loginUser(requestDTO);
+        UserResponse.LoginDTO sessionUser = userService.login(requestDTO);
         session.setAttribute("sessionUser", sessionUser);
+        session.setAttribute("isCheck", sessionUser.getIsCheck());
 
         return "redirect:/";
     }
