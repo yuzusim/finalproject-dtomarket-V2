@@ -29,7 +29,7 @@ public class Product {
     @Column(nullable = false)
     private String img;              // 상품이미지
 
-    @CreationTimestamp
+//    @CreationTimestamp
     private Timestamp createdAt;
 
     @Builder
