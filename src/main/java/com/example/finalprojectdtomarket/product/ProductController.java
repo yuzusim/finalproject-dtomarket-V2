@@ -27,7 +27,9 @@ public class ProductController {
 
     // 상품 상세보기
     @GetMapping("/product/{id}")
-    public String detail() {
+    public String detail(@PathVariable Integer id, HttpServletRequest request) {
+        ProductResponse.DetailDTO product = productService.getDetail(id);
+        request.setAttribute("product", product);
         return "product/detail";
     }
 
