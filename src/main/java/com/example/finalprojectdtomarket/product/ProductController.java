@@ -58,7 +58,9 @@ public class ProductController {
 
     // 상품 삭제하기
     @PostMapping("/product/{id}/delete")
-    public String delete() {
+    public String delete(@PathVariable Integer id) {
+        productService.deleteProduct(id);
+
         return "redirect:/";
     }
 
