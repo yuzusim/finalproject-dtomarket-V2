@@ -5,11 +5,12 @@ insert into user_tb(role, username, password, phone, birth, email, created_at) v
 insert into user_tb(role, username, password, phone, birth, email, created_at) values(2, 'love', '1234', '010-4444-4444', '1999-01-26','love@nate.com', now());
 
 -- product 정보
-INSERT INTO product_tb(name, price, qty, img, created_at) VALUES ('바나나', 3000, 100, 'banana.jpg' ,NOW());
-INSERT INTO product_tb(name, price, qty, img, created_at) VALUES ('딸기', 2000, 100, 'strawberry.jpg', NOW());
-INSERT INTO product_tb(name, price, qty, img, created_at) VALUES ('수박', 5000, 100,  'wm.jpg',NOW());
-INSERT INTO product_tb(name, price, qty, img, created_at) VALUES ('포도', 10000, 100,'grape.jpg', NOW());
-INSERT INTO product_tb(name, price, qty, img, created_at) VALUES ('오렌지', 7000, 100, 'orange.jpg',NOW());
+INSERT INTO product_tb(name, price, qty, img, created_at) VALUES ('성주 참외 1.5kg(4~7입)', 17900, 100, 'prod_3.jpg' ,NOW());
+INSERT INTO product_tb(name, price, qty, img, created_at) VALUES ('바나나 실속 2종', 4800, 100, 'prod_4.jpg', NOW());
+INSERT INTO product_tb(name, price, qty, img, created_at) VALUES ('당도선별 천혜향 1kg(4~6입)', 15000, 100, 'prod_1.jpg',NOW());
+INSERT INTO product_tb(name, price, qty, img, created_at) VALUES ('대추 방울 토마토 750g', 9900, 100,'prod_2.jpg', NOW());
+INSERT INTO product_tb(name, price, qty, img, created_at) VALUES ('애플청포도 500g', 11900, 100, 'prod_7.jpg',NOW());
+INSERT INTO product_tb(name, price, qty, img, created_at) VALUES ('고랭지 부사 1.3kg(4~5d입)', 21900, 100, 'prod_6.jpg',NOW());
 
 -- cart 정보
 INSERT INTO cart_tb(user_id, product_id, address, order_qty, total_qty, total_price, created_at) VALUES (2, 1, '부산광역시 진구 부암로', 20, 80, 60000, NOW());
