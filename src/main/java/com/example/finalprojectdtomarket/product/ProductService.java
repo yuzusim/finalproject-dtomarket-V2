@@ -1,9 +1,12 @@
 package com.example.finalprojectdtomarket.product;
 
+
 import com.example.finalprojectdtomarket._core.errors.exception.Exception404;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -11,6 +14,7 @@ import java.util.List;
 @Service
 public class ProductService {
     private final ProductJPARepository productJPARepository;
+
 
     //상품 상세보기
     public ProductResponse.DetailDTO getDetail(Integer id) {
@@ -20,6 +24,12 @@ public class ProductService {
 //        System.out.println("dto확인 " + product);
         return new ProductResponse.DetailDTO(product);
 
+    }
+
+    // 상품 등록하기
+    @Transactional
+    public void save(ProductRequest.SaveDTO reqDTO) {
+        productJPARepository.save(reqDTO.toEntity());
     }
 
 
