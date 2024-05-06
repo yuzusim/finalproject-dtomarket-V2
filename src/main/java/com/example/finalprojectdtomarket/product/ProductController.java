@@ -1,6 +1,8 @@
 package com.example.finalprojectdtomarket.product;
 
+import com.example.finalprojectdtomarket.user.User;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,7 @@ import java.util.List;
 @Controller
 public class ProductController {
     private final ProductService productService;
+    private final HttpSession session;
 
     // 상품목록보기
     @GetMapping("/")
@@ -35,7 +38,8 @@ public class ProductController {
     }
 
     @PostMapping("/product/save")
-    public String save() {
+    public String save(ProductRequest.SaveDTO reqDTO) {
+        productService.save(reqDTO);
         return "redirect:/";
     }
 

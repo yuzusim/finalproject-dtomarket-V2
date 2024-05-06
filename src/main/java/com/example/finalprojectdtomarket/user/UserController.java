@@ -42,7 +42,6 @@ public class UserController {
         }
     }
 
-
     // 로그인
     @PostMapping("/login")
     public String login(UserRequest.LoginDTO requestDTO) {
