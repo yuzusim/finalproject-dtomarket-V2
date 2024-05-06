@@ -2,6 +2,8 @@ package com.example.finalprojectdtomarket.product;
 
 
 import com.example.finalprojectdtomarket._core.errors.exception.Exception404;
+import com.example.finalprojectdtomarket.cart.CartJPARepository;
+import com.example.finalprojectdtomarket.orderItem.OrderItemJPARepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,24 @@ import java.util.List;
 @Service
 public class ProductService {
     private final ProductJPARepository productJPARepository;
+    private final OrderItemJPARepository orderItemJPARepository;
+    private final CartJPARepository cartJPARepository;
+
+    //상품 삭제하기
+    @Transactional
+    public void deleteProduct(Integer productId) {
+        Product product = productJPARepository.findById(productId)
+                .orElseThrow(() -> new Exception404("상품이 존재하지 않습니다."));
+
+        //근데 admin 1명 밖에 없어서 삭제 권한 여부 확인할 필요 없지않나? -> 생략함
+
+        //orderItem이랑 cart에 있다고 제약조건 걸리는건 좀 이상한듯
+        cartJPARepository.deleteByProductId(productId);
+        orderItemJPARepository.deleteByProductId(productId);
+        productJPARepository.deleteById(productId);
+
+    }
+
 
 
     //상품 상세보기
