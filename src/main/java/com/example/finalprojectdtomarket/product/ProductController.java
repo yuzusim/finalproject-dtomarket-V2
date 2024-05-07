@@ -1,6 +1,8 @@
 package com.example.finalprojectdtomarket.product;
 
+import com.example.finalprojectdtomarket.user.User;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,7 @@ import java.util.List;
 @Controller
 public class ProductController {
     private final ProductService productService;
+    private final HttpSession session;
 
     // 상품목록보기
     @GetMapping("/")
@@ -24,7 +27,9 @@ public class ProductController {
 
     // 상품 상세보기
     @GetMapping("/product/{id}")
-    public String detail() {
+    public String detail(@PathVariable Integer id, HttpServletRequest request) {
+        ProductResponse.DetailDTO product = productService.getDetail(id);
+        request.setAttribute("product", product);
         return "product/detail";
     }
 
@@ -35,14 +40,15 @@ public class ProductController {
     }
 
     @PostMapping("/product/save")
-    public String save() {
+    public String save(ProductRequest.SaveDTO reqDTO) {
+        productService.save(reqDTO);
         return "redirect:/";
     }
 
     // 상품 수정하기
     @GetMapping("/product/{id}/update-form")
     public String updateForm(@PathVariable Integer id, HttpServletRequest request) {
-        Product product = productService.findByProductId(id);
+        ProductResponse.DetailDTO product = productService.getDetail(id);
         request.setAttribute("product", product);
         return "product/update-form";
     }
@@ -55,7 +61,9 @@ public class ProductController {
 
     // 상품 삭제하기
     @PostMapping("/product/{id}/delete")
-    public String delete() {
+    public String delete(@PathVariable Integer id) {
+        productService.deleteProduct(id);
+
         return "redirect:/";
     }
 

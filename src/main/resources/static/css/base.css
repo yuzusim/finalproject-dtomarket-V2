@@ -16,7 +16,7 @@
 
 body {
     font-family: 'Nanum Gothic', sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 2em;
     box-sizing: border-box;
     _overflow-x: hidden;
@@ -236,25 +236,32 @@ table {width: 100%; border: none;}
 }
 
 .btn-yellow{background-color: var(--btn-yellow);}
-
 .point-color {color: var(--mint-color);}
-
 .btn-mint {
     background-color: var(--mint-color);
     color: #fff;
 }
-
 .mint-color {
     background-color: var(--mint-color);
     color: #fff;
 }
-
 .mint-color:hover {color: #fff;}
-
 .btn-outline-mint {border: 1px solid var(--mint-color);}
-
 .btn-outline-mint:hover {font-weight: 600;}
+
 
 /*서브공통*/
 .sub-page{padding:200px 0;}
 
+/* Chrome, Safari, Edge 및 Opera에서 화살표 숨기기 */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox에서 화살표 숨기기 */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+input.quantity{background-color: #fff !important;}
