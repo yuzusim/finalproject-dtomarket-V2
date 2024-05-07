@@ -4,12 +4,11 @@ package com.example.finalprojectdtomarket.product;
 import com.example.finalprojectdtomarket._core.errors.exception.Exception404;
 import com.example.finalprojectdtomarket.cart.CartJPARepository;
 import com.example.finalprojectdtomarket.orderItem.OrderItemJPARepository;
+import com.example.finalprojectdtomarket._core.common.ImgSaveUtil;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -59,4 +58,18 @@ public class ProductService {
         return productJPARepository.findAll(sort); // return에 sort 객체 안 넣어주면 DESC 안 됨
     }
 
+    // 상품 정보 수정
+    @Transactional
+    public ProductResponse.UpdateDTO updateProduct(Integer productId, ProductRequest.UpdateDTO reqDTO) {
+        Product product = productJPARepository.findById(productId)
+                .orElseThrow(() -> new Exception404("상품을 찾을 수 없습니다."));
+
+        String imgName = ImgSaveUtil.save(reqDTO.getImg());
+        product.setImg(imgName);
+        product.setName(reqDTO.getName());
+        product.setPrice(reqDTO.getPrice());
+        product.setQty(reqDTO.getQty());
+        productJPARepository.save(product);
+        return new ProductResponse.UpdateDTO(product);
+    }
 }
