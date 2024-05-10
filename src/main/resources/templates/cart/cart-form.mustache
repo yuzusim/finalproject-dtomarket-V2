@@ -11,27 +11,44 @@
                     <th>상품명</th>
                     <th>구매수량</th>
                     <th>상품가격</th>
+                    <th>총액</th>
                     <th>선택하기</th>
                 </tr>
-                    <tr class="cart-table my-cart-list" id="cart-id">
-                        <td>1</td>
-                        <td>
-                            <div style="width:150px; margin:0 auto;">
-                                <img src="/upload/img" alt="Product Image" style="max-width: 100%; max-height: 100%;">
-                            </div>
-                            상품명
-                        </td>
-                        <td>
-                            <input type="hidden" class="cart-qty" name="orderQty" value="구매수량">
-                            구매수량
-                        </td>
-                        <td>가격</td>
-                        <td>
-                            <input class="form-check-input product-checkbox item-check" type="checkbox" name="itemCheck" id="itemCheck-id" style="width:20px !important; margin: 0 auto">
-                        </td>
-                    </tr>
+
+                <tr class="cart-table my-cart-list" id="cart-id">
+                    <td>1</td>
+                    <td>
+                        <div style="width:150px; margin:0 auto;">
+                            <img src="/upload/img" alt="Product Image" style="max-width: 100%; max-height: 100%;">
+                        </div>
+                        상품명
+                    </td>
+
+                    <td colspan="2">
+                        <!-- 상품의 구매 수량만큼 표시됩니다 value 명에 변수 값만 넣어주세요-->
+                        <div class="quantity-controls d-flex"
+                             style="width: 100px; text-align: center; ">
+                            <button type="button" class="decrease-btn" aria-label="수량내리기" style="">-
+                            </button>
+                            <input type="text" class="quantity" name="orderQty" value="1"
+                                   style="text-align: center; ">
+                            <button type="button" class="increase-btn" aria-label="수량올리기">+</button>
+                        </div>
+                    </td>
+
+                    <td>단가</td>
+
+                    <td>총가격</td>
+
+                    <td>
+                        <input class="form-check-input product-checkbox item-check" type="checkbox" name="itemCheck"
+                               id="itemCheck-id" style="width:20px !important; margin: 0 auto">
+                    </td>
+                </tr>
             </table>
+
             <button type="button" class="btn btn-warning" id="purchaseButton" style="width:300px">주문하기</button>
+
         </div>
     </div>
 </div>
@@ -75,6 +92,32 @@
     });
 </script>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // 수량 증가 버튼 클릭 이벤트
+        $(".increase-btn").click(function () {
+            var $quantityInput = $(this).siblings(".quantity");
+            var currentQuantity = parseInt($quantityInput.val());
+            $quantityInput.val(currentQuantity + 1);
+        });
+
+        // 수량 감소 버튼 클릭 이벤트
+        $(".decrease-btn").click(function () {
+            var $quantityInput = $(this).siblings(".quantity");
+            var currentQuantity = parseInt($quantityInput.val());
+            if (currentQuantity > 1) {
+                $quantityInput.val(currentQuantity - 1);
+            }
+        });
+
+        // 재고 수량 계산하여 표시
+        var productQty = parseInt("{qty}}");
+        var orderQty = parseInt($(".quantity").val());
+        var remainingQty = productQty - orderQty;
+        $(".remaining-qty").text("재고 수량: " + remainingQty);
+    });
+</script>
 
 <script src="/js/sum-calculate.js"></script>
 <script src="/js/list.js"></script>
