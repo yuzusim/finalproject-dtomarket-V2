@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @RequiredArgsConstructor
 @Controller
@@ -19,11 +20,6 @@ public class CartController {
         return "";
     }
 
-    // 상세보기
-    @GetMapping("/cart/{id}")
-    public String detail() {
-        return "";
-    }
 
     // 장바구니 담기
     @PostMapping("/cart/{id}/save")
@@ -31,20 +27,9 @@ public class CartController {
         return "redirect:/cart-list";
     }
 
-    // 수정하기 - 수량 수정은 버튼으로 하면 수정 폼이 필요 없을 거 같아요
-//    @GetMapping("/cart/{id}/update-form")
-//    public String updateForm(){
-//        return "";
-//    }
-//
-//    @PostMapping("/cart/{id}/update")
-//    public String update(){
-//        return "";
-//    }
 
-    // 삭제하기 - 주문하면 삭제되고 어디로 반환돼야 하는지 모르겠어요
-    @PostMapping("/cart/{id}/delete")
-    public String delete() {
-        return "";
+    @PostMapping("/cart/update")
+    public @ResponseBody String update() {
+        return "구매를 진행하겠습니다.";
     }
 }
