@@ -33,6 +33,9 @@ public class Cart {
     @Column(nullable = false)
     private Integer orderQty;   // 주문 수량
 
+    @Column
+    private Boolean isChecked;  //장바구니 선택 됐나요? 0 -> false, 1 -> true
+
 //    @CreationTimestamp
     private Timestamp createdAt;
 
@@ -40,12 +43,14 @@ public class Cart {
     private Integer indexNum;   //index 가공용!! db에는 안넣게 했어요
 
     @Builder
-    public Cart(Integer id, User user, Product product, String address, Integer orderQty, Timestamp createdAt) {
+    public Cart(Integer id, User user, Product product, String address, Integer orderQty, Boolean isChecked, Timestamp createdAt, Integer indexNum) {
         this.id = id;
         this.user = user;
         this.product = product;
         this.address = address;
         this.orderQty = orderQty;
+        this.isChecked = isChecked;
         this.createdAt = createdAt;
+        this.indexNum = indexNum;
     }
 }
