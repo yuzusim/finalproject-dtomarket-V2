@@ -33,23 +33,16 @@ public class Cart {
     @Column(nullable = false)
     private Integer orderQty;   // 주문 수량
 
-    @Column
-    private Integer totalQty;   // 남은 상품 총 수량
-
-    @Column
-    private Integer totalPrice;   // 구매 총 가격
-
 //    @CreationTimestamp
     private Timestamp createdAt;
 
     @Builder
-    public Cart(Integer id, User user, Product product, String address, Integer orderQty, Integer totalQty, Timestamp createdAt) {
+    public Cart(Integer id, User user, Product product, String address, Integer orderQty, Timestamp createdAt) {
         this.id = id;
         this.user = user;
         this.product = product;
         this.address = address;
         this.orderQty = orderQty;
-        this.totalQty = totalQty;
         this.createdAt = createdAt;
     }
 }
