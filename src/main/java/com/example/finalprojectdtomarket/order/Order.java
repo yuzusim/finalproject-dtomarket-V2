@@ -23,27 +23,27 @@ public class Order {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Product product;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Cart cart;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    private Product product;
+//
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    private Cart cart;
 
     @Column
     private Integer sum;
 
+    //ORDER_COMPLETE -> 주문완료, ORDER_CANCEL -> 주문취소
     @Column
-    private String status;      // 주문 상태 -> true: 주문 완료, false: 주문 취소
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status;      // 주문 상태 -> true: 주문 완료, false: 주문 취소
 
 //    @CreationTimestamp
     private Timestamp createdAt;
 
     @Builder
-    public Order(Integer id, User user, Product product, Cart cart, Integer sum, String status, Timestamp createdAt) {
+    public Order(Integer id, User user, Integer sum, OrderStatus status, Timestamp createdAt) {
         this.id = id;
         this.user = user;
-        this.product = product;
-        this.cart = cart;
         this.sum = sum;
         this.status = status;
         this.createdAt = createdAt;
