@@ -31,7 +31,7 @@
                              style="width: 100px; text-align: center; ">
                             <button type="button" class="decrease-btn" aria-label="수량내리기" style="">-
                             </button>
-                            <input type="text" class="quantity orderQty" name="orderQty" value="{{orderQty}}"
+                            <input type="text" class="quantity orderQty orderQty-change" name="orderQty" value="{{orderQty}}"
                                    style="text-align: center; ">
                             <button type="button" class="increase-btn" aria-label="수량올리기">+</button>
                         </div>
@@ -111,7 +111,7 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function setTotal() {
         // 수량 증가 버튼 클릭 이벤트
         $(".increase-btn").click(function () {
             // var $quantityInput = $(this).siblings(".quantity");
@@ -162,15 +162,33 @@
             }
         });
 
-        // 재고 수량 계산하여 표시
+        // 재고 수량 계산하여 표시    //TODO: qty 안해서 수정 안함
         var productQty = parseInt("{qty}}");
         var orderQty = parseInt($(".quantity").val());
         var remainingQty = productQty - orderQty;
         $(".remaining-qty").text("재고 수량: " + remainingQty);
     });
+
+    // 전체 합계 업데이트 함수
+    function updateTotalSum() {
+        var totalSum = 0;
+        $(".sum-class").each(function() { // 모든 합계 클래스를 순회하면서
+            totalSum += parseInt($(this).text()); // 각 합계를 더함
+        });
+        $(".totalSum").text(totalSum); // 전체 합계 업데이트
+    }
+
+    // 합계 업데이트 함수 내에서 전체 합계 업데이트 함수 호출
+    function updateSum($element, price, quantity) {
+        var sum = parseInt(price) * quantity; // 새 합계 계산
+        $element.closest("tr").find(".sum-class").text(sum); // 합계 텍스트 업데이트
+        updateTotalSum(); // 전체 합계 업데이트 호출
+    }
+
+
 </script>
 
-<script src="/js/sum-calculate.js"></script>
+<script src="/js/check-all.js"></script>
 
 
 {{> layout/footer}}
