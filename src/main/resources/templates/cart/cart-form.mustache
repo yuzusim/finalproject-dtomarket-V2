@@ -31,15 +31,15 @@
                              style="width: 100px; text-align: center; ">
                             <button type="button" class="decrease-btn" aria-label="수량내리기" style="">-
                             </button>
-                            <input type="text" class="quantity" name="orderQty" value="{{orderQty}}"
+                            <input type="text" class="quantity orderQty" name="orderQty" value="{{orderQty}}"
                                    style="text-align: center; ">
                             <button type="button" class="increase-btn" aria-label="수량올리기">+</button>
                         </div>
                     </td>
 
-                    <td>{{price}}</td>
+                    <td class="price-class">{{price}}</td>
 
-                    <td>{{sum}}</td>
+                    <td class="sum-class">{{sum}}</td>
 
                     <td>
                         <input class="form-check-input product-checkbox item-check" type="checkbox" name="itemCheck"
@@ -100,17 +100,51 @@
     $(document).ready(function () {
         // 수량 증가 버튼 클릭 이벤트
         $(".increase-btn").click(function () {
+            // var $quantityInput = $(this).siblings(".quantity");
+            // var currentQuantity = parseInt($quantityInput.val());
+            // $quantityInput.val(currentQuantity + 1);
+
             var $quantityInput = $(this).siblings(".quantity");
+            var $price = $(this).closest("tr").find(".price-class").text(); // 상품 가격 가져오기
             var currentQuantity = parseInt($quantityInput.val());
-            $quantityInput.val(currentQuantity + 1);
+            var newQuantity = currentQuantity + 1;
+            $quantityInput.val(newQuantity); // 수량 업데이트
+            updateSum($(this), $price, newQuantity); // 합계 업데이트
+
         });
 
         // 수량 감소 버튼 클릭 이벤트
         $(".decrease-btn").click(function () {
+            // var $quantityInput = $(this).siblings(".quantity");
+            // var currentQuantity = parseInt($quantityInput.val());
+            // if (currentQuantity > 1) {
+            //     $quantityInput.val(currentQuantity - 1);
+            // }
+
             var $quantityInput = $(this).siblings(".quantity");
+            var $price = $(this).closest("tr").find(".price-class").text(); // 상품 가격 가져오기
             var currentQuantity = parseInt($quantityInput.val());
             if (currentQuantity > 1) {
-                $quantityInput.val(currentQuantity - 1);
+                var newQuantity = currentQuantity - 1;
+                $quantityInput.val(newQuantity); // 수량 업데이트
+                updateSum($(this), $price, newQuantity); // 합계 업데이트
+
+            }
+        });
+
+        // 합계 업데이트 함수
+        function updateSum($element, price, quantity) {
+            var sum = parseInt(price) * quantity; // 새 합계 계산
+            $element.closest("tr").find(".sum-class").text(sum); // 합계 텍스트 업데이트
+        }
+
+        // 수량 입력 필드 값이 변경될 때 이벤트 처리
+        $(".quantity").on("input", function () {
+            var $quantityInput = $(this); // 현재 수정된 수량 입력 필드
+            var $price = $(this).closest("tr").find(".price-class").text(); // 상품 가격 가져오기
+            var currentQuantity = parseInt($quantityInput.val()); // 현재 입력된 수량
+            if (!isNaN(currentQuantity)) { // 입력된 값이 숫자인 경우에만 처리
+                updateSum($(this), $price, currentQuantity); // 합계 업데이트
             }
         });
 
@@ -123,7 +157,6 @@
 </script>
 
 <script src="/js/sum-calculate.js"></script>
-<script src="/js/list.js"></script>
-<script src="/js/check-all.js"></script>
+
 
 {{> layout/footer}}
