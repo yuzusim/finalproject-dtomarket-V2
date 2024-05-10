@@ -17,7 +17,7 @@ public class CartController {
     // 장바구니 목록
     @GetMapping({"/cart-list"})
     public String list() {
-        return "";
+        return "cart/cart-form";
     }
 
 
