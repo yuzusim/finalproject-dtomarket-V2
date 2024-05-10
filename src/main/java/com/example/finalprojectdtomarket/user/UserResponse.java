@@ -9,14 +9,14 @@ public class UserResponse {
     //로그인 용
     @Data
     public static class LoginDTO {
-        private String username;
-        //패스워드가 있어도 되나...
-        private String password;
+//        private String username;
+//        //패스워드가 있어도 되나...
+//        private String password;
+        private User user;
         private Boolean isCheck;
 
         public LoginDTO(User user, Boolean isCheck) {
-            this.username = user.getUsername();
-            this.password = user.getPassword();
+            this.user = user;
             this.isCheck = isCheck;
         }
     }
