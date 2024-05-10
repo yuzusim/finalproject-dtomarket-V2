@@ -17,7 +17,7 @@
 
             <tr class="cart-table my-cart-list" id="cart-id">
                 {{#cartList}}
-                    <td>1</td>
+                    <td>{{indexNum}}</td>
                     <td>
                         <div style="width:150px; margin:0 auto;">
                             <img src="/upload/{{img}}" alt="Product Image" style="max-width: 100%; max-height: 100%;">
@@ -39,7 +39,7 @@
 
                     <td>{{price}}</td>
 
-                    <td>총가격</td>
+                    <td>{{sum}}</td>
 
                     <td>
                         <input class="form-check-input product-checkbox item-check" type="checkbox" name="itemCheck"
