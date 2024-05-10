@@ -1,0 +1,83 @@
+{{> layout/header}}
+<style>
+</style>
+
+<div class="container pt-5" style="text-align: center">
+    <div class="cart-w d-flex">
+        <div class="cart-L">
+            <table class="table table-striped" style="vertical-align: middle">
+                <tr>
+                    <th>번호</th>
+                    <th>상품명</th>
+                    <th>구매수량</th>
+                    <th>상품가격</th>
+                    <th>선택하기</th>
+                </tr>
+                    <tr class="cart-table my-cart-list" id="cart-id">
+                        <td>1</td>
+                        <td>
+                            <div style="width:150px; margin:0 auto;">
+                                <img src="/upload/img" alt="Product Image" style="max-width: 100%; max-height: 100%;">
+                            </div>
+                            상품명
+                        </td>
+                        <td>
+                            <input type="hidden" class="cart-qty" name="orderQty" value="구매수량">
+                            구매수량
+                        </td>
+                        <td>가격</td>
+                        <td>
+                            <input class="form-check-input product-checkbox item-check" type="checkbox" name="itemCheck" id="itemCheck-id" style="width:20px !important; margin: 0 auto">
+                        </td>
+                    </tr>
+            </table>
+            <button type="button" class="btn btn-warning" id="purchaseButton" style="width:300px">주문하기</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let cartSaveList = [];
+
+    document.querySelector("#purchaseButton").addEventListener("click", function (e) {
+        e.preventDefault(); // 기본 폼 제출을 방지
+
+        let checkedCarts = [];
+
+        // 선택된 상품을 확인하고 리스트에 추가
+        document.querySelectorAll(".item-check:checked").forEach(checkbox => {
+            let cartId = checkbox.id.split('-')[1];
+            let orderQty = document.querySelector(`#cart-${cartId} .cart-qty`).value;
+
+            let checkedCart = {
+                cartId: cartId,
+                orderQty: orderQty,
+                status: checkbox.checked ? true : false // 체크 여부에 따라 상태 설정
+            };
+
+            checkedCarts.push(checkedCart);
+        });
+
+        console.log(checkedCarts);
+
+        // AJAX 요청으로 선택된 상품을 서버로 전송
+        $.ajax({
+            url: '#',
+            data: JSON.stringify(checkedCarts),
+            contentType: 'application/json; charset=utf-8',
+            type: 'POST'
+        }).done((res) => {
+            alert(`결과: ${res}`);
+            location.href = "#";
+        }).fail((res) => {
+            // 오류 처리
+        });
+    });
+</script>
+
+
+<script src="/js/sum-calculate.js"></script>
+<script src="/js/list.js"></script>
+<script src="/js/check-all.js"></script>
+
+{{> layout/footer}}
