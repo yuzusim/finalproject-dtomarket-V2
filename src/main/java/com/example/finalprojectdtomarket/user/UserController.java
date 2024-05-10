@@ -46,7 +46,7 @@ public class UserController {
     @PostMapping("/login")
     public String login(UserRequest.LoginDTO requestDTO) {
         UserResponse.LoginDTO sessionUser = userService.login(requestDTO);
-        session.setAttribute("sessionUser", sessionUser);
+        session.setAttribute("sessionUser", sessionUser.getUser());
         session.setAttribute("isCheck", sessionUser.getIsCheck());
 
         return "redirect:/";

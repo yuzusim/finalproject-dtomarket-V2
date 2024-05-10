@@ -36,6 +36,9 @@ public class Cart {
 //    @CreationTimestamp
     private Timestamp createdAt;
 
+    @Transient
+    private Integer indexNum;   //index 가공용!! db에는 안넣게 했어요
+
     @Builder
     public Cart(Integer id, User user, Product product, String address, Integer orderQty, Timestamp createdAt) {
         this.id = id;
