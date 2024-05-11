@@ -5,7 +5,9 @@
 {{#sessionUser}}
     {{#isCheck}}
             <!--개인 로그인시-->
-            <form action="/order/1/add" method="post">
+            <form action="/cart/save" method="post">
+                <input type="hidden" name="productId" value="{{product.id}}">
+                <input type="hidden" name="isChecked" value="0">
                 <div class="d-flex prodsav-W">
                     <!--상품이미지-->
                     <div class="prodsave-L">
@@ -154,7 +156,76 @@
 {{/sessionUser}}
 <!--판매자 로그인시-->
 
-<!--비회원 로그인시 -->
+{{^sessionUser}}
+    <!--비회원 로그인시 -->
+    <form action="/order/1/add" method="post">
+        <div class="d-flex prodsav-W">
+            <!--상품이미지-->
+            <div class="prodsave-L">
+                <div class="mb-3 mt-3"
+                     style="width: 400px; height: 400px; border: 1px solid #ddd; color: #ddd; overflow: hidden">
+                    <img src="/upload/{{product.img}}" alt="Product Image"
+                         style="max-width: 100%; max-height: 100%;">
+                </div>
+            </div>
+            <!--상품이미지-->
+
+            <!--구매정보 체크-->
+            <div class="prodsave-R ml-10">
+                <!--상품 table-->
+                <table class="prod-info">
+                    <!--상품명-->
+                    <tr>
+                        <th>상품명</th>
+                        <td>
+                            <input id="name" name="name" type="text" class="form-control"
+                                   value="{{product.name}}" disabled style="width: 100%">
+                        </td>
+                    </tr>
+                    <!--상품명-->
+
+                    <!--상품가격-->
+                    <tr>
+                        <th>상품가격</th>
+                        <td colspan="2">
+                            <input name="price" type="number" class="form-control price"
+                                   value="{{product.price}}" disabled style="width: 100%">
+                        </td>
+                    </tr>
+                    <!--상품가격-->
+
+                    <!--상품수량-->
+                    <tr>
+                        <th>상품수량</th>
+                        <td colspan="2">
+                            <!-- 상품의 구매 수량만큼 표시됩니다 value 명에 변수 값만 넣어주세요-->
+                            <div class="quantity-controls d-flex"
+                                 style="width: 100px; text-align: center; ">
+                                <button type="button" class="decrease-btn" aria-label="수량내리기" style="">-
+                                </button>
+                                <input type="text" class="quantity" name="orderQty" value="1"
+                                       style="text-align: center; ">
+                                <button type="button" class="increase-btn" aria-label="수량올리기">+</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <!--상품수량-->
+                </table>
+                <!--상품 table-->
+
+                <!--장바구니 btn-->
+                <div class="row pr-5 pt-5" style="">
+                    <button class="btn btn-mint" type="submit" height="36" radius="3">
+                        <span class="">장바구니 담기</span>
+                    </button>
+                </div>
+                <!--장바구니 btn-->
+            </div>
+            <!--구매정보 체크-->
+        </div>
+    </form>
+{{/sessionUser}}
+<!--비회원 로그인시-->
 
 
 </div>

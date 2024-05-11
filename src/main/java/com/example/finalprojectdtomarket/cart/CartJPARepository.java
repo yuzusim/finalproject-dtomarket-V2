@@ -9,6 +9,10 @@ import java.util.List;
 
 public interface CartJPARepository extends JpaRepository<Cart, Integer> {
 
+    //cart-save 용
+
+    
+
     //cart-list 용
     @Query("select c from Cart c join fetch c.product p where c.user.id = :userId order by c.id desc")
     List<Cart> findByCartUserId(@PathVariable("userId") Integer userId);

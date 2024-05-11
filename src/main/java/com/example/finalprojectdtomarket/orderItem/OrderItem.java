@@ -33,7 +33,7 @@ public class OrderItem {
     @Column
     private Integer orderQty;
 
-//    @CreationTimestamp
+    @CreationTimestamp
     private Timestamp createdAt;
 
     @Builder
