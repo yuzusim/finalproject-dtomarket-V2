@@ -30,8 +30,10 @@ public class CartController {
 
 
     // 장바구니 담기
-    @PostMapping("/cart/{id}/save")
+    @PostMapping("/cart/save")
     public String saveCart() {
+
+
         return "redirect:/cart-list";
     }
 
