@@ -36,7 +36,7 @@ public class Cart {
     @Column
     private Boolean isChecked;  //장바구니 선택 됐나요? 0 -> false, 1 -> true
 
-//    @CreationTimestamp
+    @CreationTimestamp
     private Timestamp createdAt;
 
     @Transient

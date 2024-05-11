@@ -31,8 +31,11 @@ public class CartController {
 
     // 장바구니 담기
     @PostMapping("/cart/save")
-    public String saveCart() {
+    public String saveCart(CartRequest.saveDTO requestDTO) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        cartService.cartSave(requestDTO, sessionUser);
 
+        System.out.println("cart 확인 : " + requestDTO);
 
         return "redirect:/cart-list";
     }

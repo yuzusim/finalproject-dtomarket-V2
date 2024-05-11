@@ -5,7 +5,9 @@
 {{#sessionUser}}
     {{#isCheck}}
             <!--개인 로그인시-->
-            <form action="/order/1/add" method="post">
+            <form action="/cart/save" method="post">
+                <input type="hidden" name="productId" value="{{product.id}}">
+                <input type="hidden" name="isChecked" value="0">
                 <div class="d-flex prodsav-W">
                     <!--상품이미지-->
                     <div class="prodsave-L">
