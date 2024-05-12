@@ -16,13 +16,13 @@ INSERT INTO product_tb(name, price, qty, img, created_at) VALUES ('고랭지 부
 INSERT INTO cart_tb(user_id, product_id, order_qty, is_checked, created_at) VALUES (2, 1, 20, true, NOW());
 INSERT INTO cart_tb(user_id, product_id, order_qty, is_checked, created_at) VALUES (2, 3, 10, true, NOW());
 INSERT INTO cart_tb(user_id, product_id, order_qty, is_checked, created_at) VALUES (2, 4,  5, true, NOW());
-INSERT INTO cart_tb(user_id, product_id, order_qty, is_checked, created_at) VALUES (3, 2, '부산광역시 진구 동평로', 15, true, NOW());
-INSERT INTO cart_tb(user_id, product_id, order_qty, is_checked, created_at) VALUES (3, 5, '부산광역시 진구 양정로', 10, false, NOW());
-INSERT INTO cart_tb(user_id, product_id, order_qty, is_checked, created_at) VALUES (4, 2, '부산광역시 진구 신천대로', 3, false, NOW());
-INSERT INTO cart_tb(user_id, product_id, order_qty, is_checked, created_at) VALUES (4, 3, '부산광역시 진구 해맞이로', 20, false, NOW());
+INSERT INTO cart_tb(user_id, product_id, order_qty, is_checked, created_at) VALUES (3, 2, 15, true, NOW());
+INSERT INTO cart_tb(user_id, product_id, order_qty, is_checked, created_at) VALUES (3, 5, 10, false, NOW());
+INSERT INTO cart_tb(user_id, product_id, order_qty, is_checked, created_at) VALUES (4, 2,  3, false, NOW());
+INSERT INTO cart_tb(user_id, product_id, order_qty, is_checked, created_at) VALUES (4, 3,  20, false, NOW());
 
 -- order 정보
-INSERT INTO order_tb(user_id, status, sum, address, created_at) VALUES (2, 'ORDER_COMPLETE', 160000 '부산광역시 진구 부암로', ,NOW());
+INSERT INTO order_tb(user_id, status, sum, address, created_at) VALUES (2, 'ORDER_COMPLETE', 160000, '부산광역시 진구 부암로' ,NOW());
 INSERT INTO order_tb(user_id, status, sum, address, created_at) VALUES (3, 'ORDER_CANCEL', 100000,'부산광역시 진구 신암로',  NOW());
 INSERT INTO order_tb(user_id, status, sum, address, created_at) VALUES (4, 'ORDER_COMPLETE', 106000,'부산광역시 진구 거제대로', NOW());
 
