@@ -66,7 +66,6 @@ public class ProductService {
 
         String imgName = ImgSaveUtil.save(reqDTO.getImg());
         product.setImg(imgName);
-        product.setName(reqDTO.getName());
         product.setPrice(reqDTO.getPrice());
         product.setQty(reqDTO.getQty());
         productJPARepository.save(product);
