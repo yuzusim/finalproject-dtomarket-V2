@@ -4,9 +4,11 @@ import com.example.finalprojectdtomarket.user.User;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -15,6 +17,7 @@ import java.util.List;
 @Controller
 public class CartController {
     private final CartService cartService;
+    private final CartJPARepository cartJPARepository;
     private final HttpSession session;
 
 
@@ -42,7 +45,14 @@ public class CartController {
 
 
     @PostMapping("/cart/update")
-    public @ResponseBody String update() {
-        return "구매를 진행하겠습니다.";
+    public ResponseEntity<?> update(@RequestBody List<CartRequest.UpdateDTO> reqDTO) {
+        System.out.println("장바구니 값 받니? : " + reqDTO);
+        cartJPARepository.updateCheckedById();
+
+        return ResponseEntity.ok().body("선택한 상품의 구매를 진행 하시겠습니까?");
     }
+
+//    public @ResponseBody String update() {
+//        return "구매를 진행하겠습니다.";
+//    }
 }
