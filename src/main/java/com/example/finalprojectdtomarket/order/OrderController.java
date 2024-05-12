@@ -19,8 +19,14 @@ public class OrderController {
     }
 
     // 주문하기
+    @GetMapping("/order/save-form")
+    public String orderSaveForm() {
+        return "order/save-form";
+    }
+
+    // 주문하기
     @PostMapping("/order/save")
-    public String order() {
+    public String orderSave() {
         return "redirect:/order-list";
     }
 
