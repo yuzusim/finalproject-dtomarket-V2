@@ -27,8 +27,6 @@ public class Cart {
     @ManyToOne(fetch = FetchType.LAZY)
     private Product product;
 
-    @Column
-    private String address;     // 배송지
 
     @Column(nullable = false)
     private Integer orderQty;   // 주문 수량
@@ -43,11 +41,10 @@ public class Cart {
     private Integer indexNum;   //index 가공용!! db에는 안넣게 했어요
 
     @Builder
-    public Cart(Integer id, User user, Product product, String address, Integer orderQty, Boolean isChecked, Timestamp createdAt, Integer indexNum) {
+    public Cart(Integer id, User user, Product product, Integer orderQty, Boolean isChecked, Timestamp createdAt, Integer indexNum) {
         this.id = id;
         this.user = user;
         this.product = product;
-        this.address = address;
         this.orderQty = orderQty;
         this.isChecked = isChecked;
         this.createdAt = createdAt;
