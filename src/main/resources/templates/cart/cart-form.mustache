@@ -76,48 +76,24 @@
 <script>
     let cartSaveList = [];
     // 총합을 계산하고 화면에 표시하는 함수
-    document.addEventListener("DOMContentLoaded", function() {
-        // 체크박스 클릭 시 총합 계산 로직 실행
-        document.querySelectorAll(".item-check").forEach(checkbox => {
-            checkbox.addEventListener("click", calculateAndDisplayTotal);
+    function calculateAndDisplayTotal() {
+        let total = 0;
+        document.querySelectorAll(".my-cart-list").forEach(row => {
+            let checkBox = row.querySelector(".item-check");
+            if(checkBox.checked){
+                let price = parseInt(row.querySelector(".price-class").textContent);
+                let orderQty = parseInt(row.querySelector(".orderQty").value);
+                total += price * orderQty;
+            }
         });
 
-        // 수량 조절 버튼 이벤트 리스너 추가
-        document.querySelectorAll(".decrease-btn, .increase-btn").forEach(button => {
-            button.addEventListener("click", function(event) {
-                let input = event.target.parentElement.querySelector(".quantity");
-                let currentValue = parseInt(input.value, 10);
-                if (event.target.classList.contains("increase-btn") && currentValue < 999) {
-                    input.value = currentValue + 1;
-                } else if (event.target.classList.contains("decrease-btn") && currentValue > 1) {
-                    input.value = currentValue - 1;
-                }
+        document.querySelector(".totalSum").textContent = total.toLocaleString();
+    }
 
-                calculateAndDisplayTotal(); // 수량 조절 후 총합 재계산
-            });
-        });
-
-        // 총합을 계산하고 화면에 표시하는 함수
-        function calculateAndDisplayTotal() {
-            let total = 0;
-            document.querySelectorAll(".my-cart-list").forEach(row => {
-                let checkBox = row.querySelector(".item-check");
-                if(checkBox.checked){
-                    let price = parseInt(row.querySelector(".price-class").textContent);
-                    let orderQty = parseInt(row.querySelector(".orderQty").value);
-                    total += price * orderQty;
-                }
-            });
-
-            document.querySelector(".totalSum").textContent = total.toLocaleString();
-        }
-
-        // 구매하기 버튼 클릭 이벤트
-        document.querySelector("#purchaseButton").addEventListener("click", function () {
-            // 구매하기 로직 추가 (예시에서는 총합계를 화면에 표시하는 것으로 마무리)
-            calculateAndDisplayTotal(); // 최종 확인용 총합계 다시 계산
-            alert("주문이 완료되었습니다. 총 합계: " + document.querySelector(".totalSum").textContent + "원");
-        });
+    // 체크박스 클릭 시 총합 계산 로직 실행
+    document.querySelectorAll(".my-cart-list .form-check-input").forEach(checkbox => {
+        checkbox.addEventListener("click", calculateAndDisplayTotal);
+    });
 
     // 구매하기 버튼 클릭 이벤트
     document.querySelector("#purchaseButton").addEventListener("click", function (e) {
