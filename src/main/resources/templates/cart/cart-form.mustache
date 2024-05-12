@@ -5,7 +5,7 @@
 <div class="container sub-page" style="text-align: center">
     <div class="cart-w d-flex">
         <div class="cart-L">
-            <table class="table table-striped" style="vertical-align: middle">
+            <table class="table table-striped" style="vertical-align: middle; text-align: center">
                 <tr>
                     <th>번호</th>
                     <th>상품명</th>
@@ -15,48 +15,52 @@
                     <th>선택하기</th>
                 </tr>
 
-            <tr class="cart-table my-cart-list" id="cart-id">
                 {{#cartList}}
-                    <td>{{indexNum}}</td>
-                    <td>
-                        <div style="width:150px; margin:0 auto;">
-                            <img src="/upload/{{img}}" alt="Product Image" style="max-width: 100%; max-height: 100%;">
-                        </div>
-                        {{pName}}
-                    </td>
+                    <tr class="cart-table my-cart-list" id="cart-{{id}}">
+                        <td>{{indexNum}}</td>
+                        <td>
+                            <div style="width:150px; margin:0 auto;">
+                                <img src="/upload/{{img}}" alt="Product Image"
+                                     style="max-width: 100%; max-height: 100%;">
+                            </div>
+                            {{pName}}
+                        </td>
 
-                    <td colspan="2">
-                        <!-- 상품의 구매 수량만큼 표시됩니다 value 명에 변수 값만 넣어주세요-->
-                        <div class="quantity-controls d-flex"
-                             style="width: 100px; text-align: center; ">
-                            <button type="button" class="decrease-btn" aria-label="수량내리기" style="">-
-                            </button>
-                            <input type="text" class="quantity orderQty orderQty-change" name="orderQty" value="{{orderQty}}"
-                                   style="text-align: center; ">
-                            <button type="button" class="increase-btn" aria-label="수량올리기">+</button>
-                        </div>
-                    </td>
+                        <td>
+                            <!-- 상품의 구매 수량만큼 표시됩니다 value 명에 변수 값만 넣어주세요-->
+                            <div class="quantity-controls d-flex"
+                                 style="width: 100px; text-align: center; margin:0 auto">
+                                <button type="button" class="decrease-btn" aria-label="수량내리기" style="">-
+                                </button>
+                                <input type="text" class="quantity orderQty orderQty-change" name="orderQty"
+                                       value="{{orderQty}}"
+                                       style="text-align: center; ">
+                                <button type="button" class="increase-btn" aria-label="수량올리기">+</button>
+                            </div>
+                        </td>
 
-                    <td class="price-class">{{price}}</td>
+                        <td class="price-class">{{price}}</td>
 
-                    <td class="sum-class">{{sum}}</td>
+                        <td class="sum-class">{{sum}}</td>
 
-                    <td>
-                        <input class="form-check-input product-checkbox item-check" type="checkbox" name="itemCheck"
-                               id="itemCheck-id" style="width:20px !important; margin: 0 auto">
-                    </td>
-                </tr>
+                        <td>
+                            <input class="form-check-input product-checkbox item-check" type="checkbox" name="itemCheck"
+                                   id="itemCheck-id" style="width:20px !important; margin: 0 auto">
+                        </td>
+                    </tr>
                 {{/cartList}}
 
             </table>
+        </div>
 
+        <div class="cart-R">
             <!-- 총합계 계산하는 것 -->
-            <div class="summary-list" style="width: 30%;">
+            <div class="summary-list">
                 <!-- 목록 리스트 1-->
                 <ul class="list-group mb-3">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <div class="flex-fill">
-                            <span style="padding-right: 40px;">합계 (원)</span>
+                            <span style="padding-right: 40px; width:300px;">총 합계 (원)</span>
                             <strong class="totalSum">0</strong>
                         </div>
                     </li>
@@ -64,8 +68,7 @@
             </div>
             <!-- 총합계 계산하는 것 -->
 
-            <button type="button" class="btn btn-warning" id="purchaseButton" style="width:300px">주문하기</button>
-
+            <button type="button" class="btn btn-mint" id="purchaseButton" style="width:300px">주문하기</button>
         </div>
     </div>
 </div>
@@ -86,7 +89,7 @@
             let checkedCart = {
                 cartId: cartId,
                 orderQty: orderQty,
-                status: checkbox.checked ? true : false // 체크 여부에 따라 상태 설정
+                isChecked: checkbox.checked ? true : false // 체크 여부에 따라 상태 설정
             };
 
             checkedCarts.push(checkedCart);
@@ -96,28 +99,23 @@
 
         // AJAX 요청으로 선택된 상품을 서버로 전송
         $.ajax({
-            url: '#',
+            url: '/cart/update',
             data: JSON.stringify(checkedCarts),
             contentType: 'application/json; charset=utf-8',
             type: 'POST'
         }).done((res) => {
             alert(`결과: ${res}`);
-            location.href = "#";
+            location.href = "/order-save-form";
         }).fail((res) => {
             // 오류 처리
         });
     });
-</script>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
+
+    //수량 수정 반영
     $(document).ready(function setTotal() {
         // 수량 증가 버튼 클릭 이벤트
         $(".increase-btn").click(function () {
-            // var $quantityInput = $(this).siblings(".quantity");
-            // var currentQuantity = parseInt($quantityInput.val());
-            // $quantityInput.val(currentQuantity + 1);
-
             var $quantityInput = $(this).siblings(".quantity");
             var $price = $(this).closest("tr").find(".price-class").text(); // 상품 가격 가져오기
             var currentQuantity = parseInt($quantityInput.val());
@@ -129,12 +127,6 @@
 
         // 수량 감소 버튼 클릭 이벤트
         $(".decrease-btn").click(function () {
-            // var $quantityInput = $(this).siblings(".quantity");
-            // var currentQuantity = parseInt($quantityInput.val());
-            // if (currentQuantity > 1) {
-            //     $quantityInput.val(currentQuantity - 1);
-            // }
-
             var $quantityInput = $(this).siblings(".quantity");
             var $price = $(this).closest("tr").find(".price-class").text(); // 상품 가격 가져오기
             var currentQuantity = parseInt($quantityInput.val());
@@ -142,7 +134,6 @@
                 var newQuantity = currentQuantity - 1;
                 $quantityInput.val(newQuantity); // 수량 업데이트
                 updateSum($(this), $price, newQuantity); // 합계 업데이트
-
             }
         });
 
@@ -172,7 +163,7 @@
     // 전체 합계 업데이트 함수
     function updateTotalSum() {
         var totalSum = 0;
-        $(".sum-class").each(function() { // 모든 합계 클래스를 순회하면서
+        $(".sum-class").each(function () { // 모든 합계 클래스를 순회하면서
             totalSum += parseInt($(this).text()); // 각 합계를 더함
         });
         $(".totalSum").text(totalSum); // 전체 합계 업데이트
@@ -185,10 +176,12 @@
         updateTotalSum(); // 전체 합계 업데이트 호출
     }
 
+    //수량 수정 반영
 
 </script>
 
+<script src="/js/sum-calculate.js"></script>
+<script src="/js/list.js"></script>
 <script src="/js/check-all.js"></script>
-
 
 {{> layout/footer}}

@@ -488,3 +488,6 @@ nav{
 .cart-table tr.bar,
 .order-table tr.bar{border-bottom:1px solid #222;}
 
+.notVisible{
+    visibility: hidden;
+}

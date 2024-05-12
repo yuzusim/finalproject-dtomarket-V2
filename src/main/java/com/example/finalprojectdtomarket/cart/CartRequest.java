@@ -9,6 +9,14 @@ import java.sql.Timestamp;
 
 public class CartRequest {
 
+    //장바구니 업데이트
+    @Data
+    public static class UpdateDTO{
+        private Integer cartId;
+        private Integer orderQty;
+        private Boolean isChecked;
+    }
+
     @Data
     public static class saveDTO {
 //        private Integer userId;
