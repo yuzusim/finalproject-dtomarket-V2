@@ -19,7 +19,7 @@ public class OrderController {
     }
 
     // 주문하기
-    @PostMapping("/order/{id}")
+    @PostMapping("/order/save")
     public String order() {
         return "redirect:/order-list";
     }

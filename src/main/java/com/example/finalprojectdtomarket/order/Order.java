@@ -30,6 +30,9 @@ public class Order {
 //    private Cart cart;
 
     @Column
+    private String address;     // 배송지
+
+    @Column
     private Integer sum;
 
     //ORDER_COMPLETE -> 주문완료, ORDER_CANCEL -> 주문취소
@@ -41,9 +44,10 @@ public class Order {
     private Timestamp createdAt;
 
     @Builder
-    public Order(Integer id, User user, Integer sum, OrderStatus status, Timestamp createdAt) {
+    public Order(Integer id, User user, String address, Integer sum, OrderStatus status, Timestamp createdAt) {
         this.id = id;
         this.user = user;
+        this.address = address;
         this.sum = sum;
         this.status = status;
         this.createdAt = createdAt;
