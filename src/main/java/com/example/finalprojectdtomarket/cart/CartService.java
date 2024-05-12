@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -16,6 +17,19 @@ public class CartService {
     private final CartJPARepository cartJPARepository;
     private final ProductJPARepository productJPARepository;
 
+    @Transactional
+    public void updateCart(List<CartRequest.UpdateDTO> updateDTOList) {
+        List<Cart> cartList = new ArrayList<>();
+        for (CartRequest.UpdateDTO reqDTO : updateDTOList) {
+            Cart cart = cartJPARepository.findById(reqDTO.getCartId())
+                    .orElseThrow(()->new Exception404("상품이 존재하지 않습니다."));
+            cart.setId(reqDTO.getCartId());
+            cart.setOrderQty(reqDTO.getOrderQty());
+            cart.setIsChecked(true);
+            cartList.add(cart);
+            cartJPARepository.delete(cart);
+        }
+    }
     //cart-save
     @Transactional
     public void cartSave(CartRequest.saveDTO requestDTO, User sessionUser) {

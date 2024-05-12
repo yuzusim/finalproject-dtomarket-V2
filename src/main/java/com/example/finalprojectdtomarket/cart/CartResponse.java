@@ -15,12 +15,14 @@ public class CartResponse {
         private Integer price;      //상품단가
 
         private Integer sum;        //가공하기
+        private boolean isChecked;
         private Integer indexNum;   //번호 이쁘게 가공용
 
         public ListDTO(Cart cart) {
             this.id = cart.getId();
             this.orderQty = cart.getOrderQty();
             this.img = cart.getProduct().getImg();
+            this.isChecked  = false;
             this.pName = cart.getProduct().getName();
             this.price = cart.getProduct().getPrice();
             setSum();
