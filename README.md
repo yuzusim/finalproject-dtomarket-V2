@@ -1,20 +1,26 @@
-## 2. 컨벤션
-- 각 기능 또는 작업에 대한 새로운 브랜치를 생성하고, 완료 시 'main'에 병합
-- 새로운 기능이나 버그 수정은 브랜치를 생성하고, 해당 브랜치에서 작업 후 Pull Request를 통해 'master'로 병합
-- 브랜치 네이밍으로 이니셜/기능/구현하는 메소드명 형식으로 전환하여 사용 (ex. lsh/user/join)
+# DTO Market - 과일 판매 사이트
+![Screenshot_8](https://github.com/yuzusim/finalproject-dtomarket/assets/153695703/f23d3830-2718-449d-af1f-d1a8154eb128)
 
-## 3. 기술스택
-- Springboot 3.2
-- JDK 21
-- 인텔리J
-- H2
-- MySQL8.0
+## 1. 시연 영상
 
-## 4. 의존성
-- Lombok
-- DevTools
-- Spring WEB
-- JPA
-- h2
-- MySQL
-- Mustache
+## 2. 발표 자료
+
+## 3. 팀 소개 및 각자 맡은 기능
+### 이서현
+
+### 김하형
+
+### 심유주
+
+### 송채현
+
+### 이소연
+
+
+
+## 4. 팀 컨벤션
+![image](https://github.com/yuzusim/finalproject-dtomarket/assets/153695703/4415aca8-0156-4eb0-b65b-f795a925296d)
+
+
+## 5. 개발 환경
+![image](https://github.com/yuzusim/finalproject-dtomarket/assets/153695703/09465c6f-0e28-4029-a853-5700112a115d)
