@@ -2,7 +2,7 @@
 ![Screenshot_8](https://github.com/yuzusim/finalproject-dtomarket/assets/153695703/f23d3830-2718-449d-af1f-d1a8154eb128)
 
 ## 1. 시연 영상
-![5조](https://github.com/yuzusim/finalproject-dtomarket/assets/153695703/ab8ca6ab-ba0a-4199-aee3-3feb3fecf004)
+![5조](https://github.com/yuzusim/finalproject-dtomarket/assets/153695703/b32e876c-2030-47b1-b33f-c3957c5813b8)
 
 ## 2. 발표 자료
 ![image](https://github.com/yuzusim/finalproject-dtomarket/assets/153695703/9d5e33d0-87b6-4fbe-a243-b3f4f6c21f8d)
