@@ -4,6 +4,7 @@
 ## 1. 시연 영상
 
 ## 2. 발표 자료
+[5조.pdf](https://github.com/yuzusim/finalproject-dtomarket/files/15412619/5.pdf)
 
 ## 3. 팀 소개
 ## 3-1. 디자인
