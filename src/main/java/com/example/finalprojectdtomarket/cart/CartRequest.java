@@ -19,7 +19,6 @@ public class CartRequest {
 
     @Data
     public static class saveDTO {
-//        private Integer userId;
         private Integer productId;
         private Integer orderQty;
         private Boolean isChecked;
