@@ -12,7 +12,7 @@ public interface CartJPARepository extends JpaRepository<Cart, Integer> {
 
     // 주문서 확인 폼
     @Query("select c from Cart c JOIN FETCH c.product p JOIN FETCH c.user u WHERE u.id =:userId and c.isChecked =:isChecked")
-    List<CartResponse.ListDTO> findByUserIdAndChecked(@Param("userId") int userId, @Param("isChecked") boolean isChecked);
+    List<Cart> findByUserIdAndChecked(@Param("userId") int userId, @Param("isChecked") boolean isChecked);
 
     @Modifying
     @Query("update Cart c set c.isChecked = :isChecked where c.id = :id")
@@ -30,5 +30,13 @@ public interface CartJPARepository extends JpaRepository<Cart, Integer> {
     @Modifying
     @Query("delete from Cart c where c.product.id = :productId")
     void deleteByProductId(@PathVariable("productId") Integer productId);
+
+    //재고 수량 조회
+    @Query("select c from Cart c join fetch c.product p where c.id = :cartId")
+    Cart findByQtyWithId(@Param("cartId") Integer cartId);
+
+    @Modifying
+    @Query("delete from Cart c where c.id = :cartId")
+    void deleteByCartId(@Param("cartId") Integer cartId);
 
 }
