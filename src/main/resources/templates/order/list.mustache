@@ -1,40 +1,176 @@
 {{> layout/header}}
 
 <div class="container pt-5" style="text-align: center">
-
+    <br>
+    <br><br><br><br>
     <div class="row">
         <!--주문 테이블-->
         <div>
             <table class="table table-striped" style="vertical-align: middle">
                 <tr>
-                    <th>번호</th>
+                    <th>주문번호</th>
                     <th>상품명</th>
-                    <th>상품가격</th>
-                    <th>구매수량</th>
+                    <th>결제금액</th>
+                    <th>배송주소</th>
+                    <th>주문날짜</th>
                     <th>주문상태</th>
+                    <th>선택하기</th>
                 </tr>
 
-                    <tr>
-                    <tr>
-                        <td>1</td>
-                        <td>상품명</td>
+                {{#orderItemList}}
+                    <tr class="flip" data-order-id="{{orderId}}">
+                        <td>{{orderNumb}}</td>
                         <td>
-                            <div style="width:150px; margin:0 auto;">
-                                <img src="/upload/img" alt="Product Image"
-                                     style="max-width: 100%; max-height: 100%;">
-                            </div>
-                            가격
+                            {{pName}}
                         </td>
-
+                        <td class="price-class" data-price="{{sum}}">
+                            {{sum}}
+                        </td>
+                        <td class="address">{{address}}</td>
                         <td>
-                            구매 수량
+                            {{createdAt}}
+                        </td>
+                        <td style="{{classChange}}">
+                            {{status}}
+                        </td>
+                        <td>
+                            <input class="form-check-input product-checkbox item-check price-class" type="checkbox"
+                                   name="itemCheck orderId"
+                                   id="itemCheck-id" value="{{sum}}"
+                                   data-order-id="{{orderId}}" data-product-id="{{productId}}"
+                                   data-price="{{sum}}" data-order-qty="{{orderQty}}"
+                                   style="width:20px !important; margin: 0 auto">
                         </td>
                     </tr>
+
+                    <tr class="panel-title">
+                        <th></th>
+                        <th>상품명</th>
+                        <th>상품금액</th>
+                        <th>주문수량</th>
+                        <th>합계</th>
+                        <th>주문상태</th>
+                        <th></th>
+                    </tr>
+
+                    <!--                순회 여러번 도는 애들 -->
+                    {{#items}}
+
+                        <tr class="panel" data-order-id="{{orderId}}" >
+
+                            <td>
+                                <div style="width:150px; margin:0 auto;">
+                                    <img src="/upload/{{img}}" alt="Product Image"
+                                         style="max-width: 100%; max-height: 100%;">
+                                </div>
+                            </td>
+
+                            <td>{{pName}}</td>
+                            <td class="price-class" data-price="{{price}}">{{price}}</td>
+                            <td>{{orderQty}}</td>
+                            <td class="price-class" data-price="{{sum}}">{{sum}}</td>
+                            <td style="{{classChange}}">{{status}}</td>
+                            <td></td>
+
+                        </tr>
+                    {{/items}}
+
+                {{/orderItemList}}
+
             </table>
+
+            <br>
+            <button type="button" class="btn btn-mint" onclick="order()" id="purchaseButton" style="width:300px">주문취소
+            </button>
+
         </div>
+
+        <br><br><br>
         <!--주문 테이블-->
     </div>
 </div>
+
+<br><br><br>
+
+<script>
+
+
+    <!--    천단위 표시 재사용 해야할 함수 -->
+    function numberWithCommas(num) {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    //처음에 들어갔을때 천단위 구분자 나오게
+    $(".price-class").each(function () {
+        let price = $(this).data("price");
+        console.log(price);
+        $(this).text(numberWithCommas(price));
+
+    });
+
+
+    //슬라이드 쇼
+    $(".flip").click(function () {
+        // alert("ㄱㄱ");
+        let orderId = $(this).data("order-id");
+        // 모든 .panel 요소를 숨김
+        // $(this).siblings(".panel").slideUp("fast");
+
+        // 동일한 data-order-id를 가진 .panel만 토글
+        setTimeout(() => {
+            // $(".panel-title").slideToggle("fast");
+            $(".panel").each(function () {
+                if ($(this).data("order-id") == orderId) {
+                    $(this).slideToggle("fast");
+                    // $(".panel-title").css('display', 'table-row');
+                }
+            });
+        }, 200); // slideUp 애니메이션이 완료될 시간을 고려하여 적당한 딜레이를 설정
+    });
+
+
+
+    // 값 받기
+    let requestBody = [];
+
+    function order() {
+        $(".item-check:checked").each(function () {
+            let orderId = $(this).data("order-id");
+            let productId = $(this).data("product-id");
+            let orderQty = $(this).data("order-qty");
+            // console.log(orderItemId);
+
+            let checkedOrder = {
+                orderId: orderId,
+                productId: productId,
+                orderQty: orderQty
+
+            };    //객체 형식으로 만들어주기
+
+            requestBody.push(checkedOrder); // orderId를 객체로 추가
+        });
+
+        console.log(requestBody);
+        console.log(JSON.stringify(requestBody));
+
+
+        $.ajax({
+            url: '/order/cancel',
+            data: JSON.stringify(requestBody),
+            contentType: 'application/json; charset=utf-8',
+            type: 'POST'
+
+        }).done((res) => {
+            alert("취소가 완료되었습니다!");
+            location.href = "/order-list"
+
+        }).fail((res) => {
+            alert("통신 오류")
+        });
+
+    }
+
+</script>
 
 
 {{> layout/footer}}
