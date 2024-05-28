@@ -1,4 +1,6 @@
 {{> layout/header}}
+<style>
+</style>
 
 <div class="container sub-page" style="text-align: center">
     <div class="cart-w d-flex">
@@ -17,7 +19,7 @@
                     <tr class="cart-table my-cart-list" id="cart-{{id}}">
                         <td>{{indexNum}}</td>
                         <input type="hidden" name="cartId" value="{{id}}">
-                        <input type="hidden" name="productId" value="{{productId}}">
+                        <input type="hidden" name="productId" value="productId}}">
                         <span class="notVisible">{{id}}</span>
                         <td>
                             <div style="width:150px; margin:0 auto;">
@@ -29,14 +31,17 @@
 
                         <td>
                             <!-- 상품의 구매 수량만큼 표시됩니다 value 명에 변수 값만 넣어주세요-->
-                            <div class="quantity-controls d-flex"
-                                 style="width: 100px; text-align: center; margin:0 auto">
-                                <button type="button" class="decrease-btn" aria-label="수량내리기" style="">-
-                                </button>
+                            <div class="quantity-controls d-flex" style="width: 100px; text-align: center; margin:0 auto">
+                                <button type="button" class="decrease-btn" aria-label="수량내리기" style="">-</button>
+<!--                                <input type="text" class="quantity orderQty orderQty-change" name="orderQty"-->
+<!--                                       value="orderQty}}"-->
+<!--                                       style="text-align: center; ">-->
+
                                 <input type="text" class="quantity orderQty orderQty-change orderQty-class" id="orderQty"
                                        name="orderQty" data-order-qty="{{orderQty}}"
                                        value="{{orderQty}}"
                                        style="text-align: center; ">
+
                                 <button type="button" class="increase-btn" aria-label="수량올리기">+</button>
                             </div>
                         </td>
@@ -45,9 +50,14 @@
 
                         <td class="sum-class" id="sum-item" data-sum="{{sum}}">{{sum}}</td>
 
+<!--                        <td>-->
+<!--                            <input class="form-check-input product-checkbox item-check" type="checkbox" name="itemCheck"-->
+<!--                                   id="itemCheck-id" style="width:20px !important; margin: 0 auto">-->
+<!--                        </td>-->
+
                         <td>
                             <input class="form-check-input product-checkbox item-check" type="checkbox" name="itemCheck"
-                                   id="itemCheck-id" value="{{sum}}" checked style="width:20px !important; margin: 0 auto">
+                                   id="itemCheck-id" value="{{sum}}" style="width:20px !important; margin: 0 auto">
                         </td>
                     </tr>
                 {{/cartList}}
@@ -69,12 +79,18 @@
                 </ul>
             </div>
             <!-- 총합계 계산하는 것 -->
+<!--            <form action="/order/save-form" method="get">-->
+<!--                #cartList}}-->
+<!--                    <input type="hidden" name="id" value="id}}">-->
+<!--                    <input type="hidden" name="orderQty" value="orderQty}}">-->
+<!--                    <input type="hidden" name="isChecked" value="isChecked}}">-->
+<!--                /cartList}}-->
+                <button type="button" class="btn btn-mint" id="purchaseButton" style="width:300px">주문하기</button>
 
-            <button type="button" class="btn btn-mint" id="purchaseButton" style="width:300px">주문하기</button>
+<!--            </form>-->
         </div>
     </div>
 </div>
-
 
 <script>
     <!--    천단위 표시 재사용 해야할 함수 -->
@@ -111,6 +127,12 @@
     });
 
 
+    // $(".orderQty-class").on("input", function () {
+    //     let orderQty = $(this).data("order-qty");
+    //     console.log(orderQty);
+    //     $(this).text(numberWithCommas(orderQty));
+    // });
+
     //장바구니에 구매금액(총액) 콤마 찍기
     $(".sum-class").each(function () {
         let sum = $(this).data("sum");
@@ -119,8 +141,25 @@
     });
 
 
+    // $(".item-check").change(function (e) {
+    //     // console.log(e);
+    //     // console.log(this);
+    //     let total = 0;
+    //     $(".item-check:checked").each(function () {
+    //         // let price = $(this).val();
+    //         // console.log(price);
+    //         total = total + parseInt($(this).val());
+    //         console.log(total);
+    //     });
+    //     $("#totalSum").text(total);
+    // });
+
+
 </script>
 
+<!--<script src="/js/check-all.js"></script>-->
 <script src="/js/cart-check.js"></script>
+
+
 
 {{> layout/footer}}

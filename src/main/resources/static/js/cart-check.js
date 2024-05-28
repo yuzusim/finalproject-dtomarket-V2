@@ -5,9 +5,9 @@ let cartList = [];
 document.querySelector("#purchaseButton").addEventListener("click", function (e) {
     e.preventDefault(); // 기본 폼 제출을 방지
 
-    let offerTable = document.querySelectorAll(".my-cart-list");
+    let cartTable = document.querySelectorAll(".my-cart-list");
 
-    offerTable.forEach(value => {
+    cartTable.forEach(value => {
 
         let checkBox = value.querySelector(".item-check");
 
@@ -17,7 +17,7 @@ document.querySelector("#purchaseButton").addEventListener("click", function (e)
             let productId = value.querySelector("input[name='productId']").value;
 
             //console.log(cartId);
-            //console.log(buyQty);
+            //console.log(orderQty);
 
             let checkedCart = {
                 cartId: cartId,
