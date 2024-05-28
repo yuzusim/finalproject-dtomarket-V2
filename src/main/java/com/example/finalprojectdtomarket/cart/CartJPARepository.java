@@ -18,9 +18,6 @@ public interface CartJPARepository extends JpaRepository<Cart, Integer> {
     @Query("update Cart c set c.isChecked = :isChecked where c.id = :id")
     int updateCheckedById();
 
-    //cart-save 용
-
-
 
     //cart-list 용
     @Query("select c from Cart c join fetch c.product p where c.user.id = :userId order by c.id desc")
