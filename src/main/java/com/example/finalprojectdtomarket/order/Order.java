@@ -23,12 +23,6 @@ public class Order {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Product product;
-//
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Cart cart;
-
     @Column
     private String address;     // 배송지
 
@@ -39,17 +33,19 @@ public class Order {
     @Column
     @Enumerated(EnumType.STRING)
     private OrderStatus status;      // 주문 상태 -> true: 주문 완료, false: 주문 취소
-
+    @Column
+    private String orderNumb;       //주문번호
     @CreationTimestamp
     private Timestamp createdAt;
 
     @Builder
-    public Order(Integer id, User user, String address, Integer sum, OrderStatus status, Timestamp createdAt) {
+    public Order(Integer id, User user, String address, Integer sum, OrderStatus status, String orderNumb, Timestamp createdAt) {
         this.id = id;
         this.user = user;
         this.address = address;
         this.sum = sum;
         this.status = status;
+        this.orderNumb = orderNumb;
         this.createdAt = createdAt;
     }
 }

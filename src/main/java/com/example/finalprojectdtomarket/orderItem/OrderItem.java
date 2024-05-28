@@ -21,15 +21,11 @@ public class OrderItem {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
-
-    @ManyToOne(fetch = FetchType.LAZY)
     private Product product;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Order order;
 
-    //이거 있어야하지 않을까?? 구매 확정된 순간 orderQty로 상품 재고 차감 해야하니까
     @Column
     private Integer orderQty;
 
@@ -37,9 +33,8 @@ public class OrderItem {
     private Timestamp createdAt;
 
     @Builder
-    public OrderItem(Integer id, User user, Product product, Order order, Integer orderQty, Timestamp createdAt) {
+    public OrderItem(Integer id, Product product, Order order, Integer orderQty, Timestamp createdAt) {
         this.id = id;
-        this.user = user;
         this.product = product;
         this.order = order;
         this.orderQty = orderQty;

@@ -11,6 +11,7 @@ public class CartResponse {
         private Integer orderQty;       //구매수량
 
         private String img;
+        private Integer productId;
         private String pName;       //상품명
         private Integer price;      //상품단가
 
@@ -21,6 +22,7 @@ public class CartResponse {
         public ListDTO(Cart cart) {
             this.id = cart.getId();
             this.orderQty = cart.getOrderQty();
+            this.productId = cart.getProduct().getId();
             this.img = cart.getProduct().getImg();
             this.isChecked  = false;
             this.pName = cart.getProduct().getName();
