@@ -24,7 +24,7 @@ public class User {
     @Column(unique = true)
     private String username;  //아이디
 
-    @Column(nullable = false)
+    @Column (nullable = false)
     private String personName;  //성함
 
     @Column(nullable = false)
@@ -51,7 +51,7 @@ public class User {
         this.email = email;
         this.birth = birth;
         this.role = role;
-        this.personName = personName;
+        //this.personName = personName;
         this.createdAt = createdAt;
     }
 }
