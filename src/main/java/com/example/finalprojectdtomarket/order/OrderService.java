@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Transactional(readOnly = true) // lazy 로딩하려면 붙이기
 @RequiredArgsConstructor
 @Service
 public class OrderService {

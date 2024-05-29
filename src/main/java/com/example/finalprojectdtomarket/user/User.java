@@ -51,7 +51,7 @@ public class User {
         this.email = email;
         this.birth = birth;
         this.role = role;
-        //this.personName = personName;
+        this.personName = personName;
         this.createdAt = createdAt;
     }
 }
